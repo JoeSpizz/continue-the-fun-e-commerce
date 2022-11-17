@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {Button, Form, Input} from 'semantic-ui-react'
+import swal from 'sweetalert'
 
 function Login({login}) {
 const [username, setUsername] = useState("")
@@ -18,7 +19,7 @@ function handleChange(e){
 // logs in, returns errors from Rails if unsuccessful
 function attemptLogin(e){
     e.preventDefault()
-    console.log(username + password)
+    swal(username + password)
     // fetch('/login', {
     //     method: "POST",
     //     headers: {"Content-type" : "Application/json"},
@@ -39,17 +40,34 @@ function attemptLogin(e){
 function toggleCreateUserForm(e){
     setCreate(!create)
 }
-// sets parameters for new form
+// sets ALL parameters for new form
 function handleNewUserInput (e){
     const value = e.target.value
     setNewUser({...newUser, 
         [e.target.name] : value
     })
 }
+// sends request to Rails for User Creation. Logs in User.
 function createUser(e){
     e.preventDefault()
     console.log(newUser)
-}
+        fetch("/signup", {
+            method: "POST",
+            headers:{
+                "Content-type" : "Application/json"
+            },
+            body: JSON.stringify(
+               newUser
+            )})
+            .then (r=>{
+                if (r.ok) {
+                r.json().then(data=>swal(data.username+ " created, please log in"))
+                }
+                else{
+                    r.json().then(data=>swal(data.errors))
+                }
+        })
+    }
 
   return (
     <div>
@@ -74,6 +92,7 @@ function createUser(e){
                     label="Desired Password"
                     placeholder="Desired Password"
                     name="password"
+                    type="password"
                     onChange={handleNewUserInput}
                     />
                 </Form.Group>
