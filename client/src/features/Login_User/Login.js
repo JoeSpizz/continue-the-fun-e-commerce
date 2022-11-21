@@ -138,7 +138,7 @@ function createUser(e){
         // The login form that you will see by default
         <div className="login">
         <h1>Log in to Continue the Fun</h1>
-        <Form onSubmit={attemptLogin}>
+        <Form onSubmit={attemptLogin} inverted>
             <Form.Group>
                 <Form.Field
                     id="userName"
