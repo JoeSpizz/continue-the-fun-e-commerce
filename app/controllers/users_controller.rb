@@ -6,6 +6,11 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    def show 
+        user = @current_user 
+        render json: user, status: :ok 
+    end
+
     private 
     def user_params
         params.permit(:user, :username, :password, :password_confirmation, :email, :address)

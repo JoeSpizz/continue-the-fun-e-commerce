@@ -29,7 +29,7 @@ function attemptLogin(e){
     })
     .then (r=>{
         if (r.ok) {
-        r.json().then(data=>login(data.username))
+        r.json().then(data=>login(data))
         }
         else{
             r.json().then(data=>alert(data.errors))

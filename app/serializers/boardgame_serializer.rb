@@ -1,3 +1,3 @@
 class BoardgameSerializer < ActiveModel::Serializer
-  attributes :id, :name, :image, :price, :description, :num_of_players, :game_length
+  attributes :id, :name, :image_url, :price, :description, :min_players, :max_players, :min_playtime
 end

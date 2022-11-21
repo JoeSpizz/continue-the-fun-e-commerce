@@ -12,7 +12,7 @@ import UserProfile from './features/Login_User/UserProfile';
 import Cart from './features/MarketPlace/Cart';
 import Wishlist from './features/Login_User/Wishlist';
 import GameCenter from './features/Login_User/GameCenter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import UserNav from './features/Login_User/UserNav';
 import swal from 'sweetalert';
 import GameSearch from './features/Games/GameSearch';
@@ -20,10 +20,22 @@ import GameSearch from './features/Games/GameSearch';
 function App() {
   // Handles logic for Logging in/setting user. 
   const [user, setUser]= useState(null)
-  function login (name){
-    console.log(name)
-    setUser(name)
-    swal(name + " has been logged in")
+  const [userData, setUserData]= useState({})
+
+  useEffect(()=>{
+    fetch('/me')
+    .then(r=>{
+      if(r.ok){
+        r.json().then(data=>{
+          setUserData(data)
+          setUser(data.username)})}})
+  }, [])
+
+  function login (user){
+    console.log(user)
+    setUserData(user)
+    setUser(user.username)
+    swal(user.username + " has been logged in")
   }
 
 console.log(user)
@@ -36,10 +48,10 @@ console.log(user)
     <Routes>
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/login" element={<Login login={login}/>}/>
-      <Route exact path="/profile" element={<UserProfile user={user} login={login}/>}/>
+      <Route exact path="/profile" element={<UserProfile user={userData} login={login}/>}/>
       <Route exact path="/cart" element={<Cart user={user} />}/>
-      <Route exact path="/wishlist" element ={<Wishlist user={user} login={login}/>}/>
-      <Route exact path="/gamecenter" element ={<GameCenter user={user} login={login}/>}/>
+      <Route exact path="/wishlist" element ={<Wishlist user={userData} login={login}/>}/>
+      <Route exact path="/gamecenter" element ={<GameCenter user={userData} login={login}/>}/>
       <Route exact path="/gamesearch" element ={<GameSearch/>}/>
     </Routes>
     </BrowserRouter>

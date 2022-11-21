@@ -6,7 +6,12 @@ function UserProfile({user, login}) {
   return (
     <div>
   
-      <h1>{user}'s Profile</h1>
+      <h1>{user.username}'s Profile</h1>
+      <ul>
+        <li>Username: {user.username}</li>
+        <li>Address: {user.address}</li> 
+        <li>Email: {user.email}</li>
+      </ul>
      
       </div>
   )
