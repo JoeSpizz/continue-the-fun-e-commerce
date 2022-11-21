@@ -1,8 +1,14 @@
 import React from 'react'
+import Login from './Login';
 
-function UserProfile({user}) {
+function UserProfile({user, login}) {
+  if (!user) return <Login login={login}/>
   return (
-    <div>{user}'s Profile</div>
+    <div>
+  
+      <h1>{user}'s Profile</h1>
+     
+      </div>
   )
 }
 

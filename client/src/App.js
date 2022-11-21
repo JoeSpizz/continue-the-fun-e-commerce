@@ -15,6 +15,7 @@ import GameCenter from './features/Login_User/GameCenter';
 import { useState } from 'react';
 import UserNav from './features/Login_User/UserNav';
 import swal from 'sweetalert';
+import GameSearch from './features/Games/GameSearch';
 
 function App() {
   // Handles logic for Logging in/setting user. 
@@ -35,10 +36,11 @@ console.log(user)
     <Routes>
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/login" element={<Login login={login}/>}/>
-      <Route exact path="/profile" element={<UserProfile user={user}/>}/>
-      <Route exact path="/cart" element={<Cart user={user}/>}/>
-      <Route exact path="/wishlist" element ={<Wishlist user={user}/>}/>
-      <Route exact path="/gamecenter" element ={<GameCenter user={user}/>}/>
+      <Route exact path="/profile" element={<UserProfile user={user} login={login}/>}/>
+      <Route exact path="/cart" element={<Cart user={user} />}/>
+      <Route exact path="/wishlist" element ={<Wishlist user={user} login={login}/>}/>
+      <Route exact path="/gamecenter" element ={<GameCenter user={user} login={login}/>}/>
+      <Route exact path="/gamesearch" element ={<GameSearch/>}/>
     </Routes>
     </BrowserRouter>
     </div>

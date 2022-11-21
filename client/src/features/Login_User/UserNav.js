@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Dropdown, Menu } from 'semantic-ui-react'
+import swal from 'sweetalert'
 
 function UserNav({ user, setUser}) {
 const[search, setSearch]= useState("")
@@ -9,6 +10,8 @@ const navigate = useNavigate()
         fetch("/logout", { method: "DELETE" }).then((r) => {
             if (r.ok) {
               setUser(null);
+              swal("You have been logged out")
+              navigate('/')
             }
           });
     }

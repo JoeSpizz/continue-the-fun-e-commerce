@@ -1,6 +1,8 @@
 import React from 'react'
+import Login from './Login'
 
-function Wishlist() {
+function Wishlist({user,login}) {
+  if (!user) return <Login login={login}/>
   return (
     <div>Wishlist</div>
   )
