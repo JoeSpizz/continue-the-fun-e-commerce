@@ -14,21 +14,24 @@ import Wishlist from './features/Login_User/Wishlist';
 import GameCenter from './features/Login_User/GameCenter';
 import { useState } from 'react';
 import UserNav from './features/Login_User/UserNav';
+import swal from 'sweetalert';
 
 function App() {
   // Handles logic for Logging in/setting user. 
   const [user, setUser]= useState(null)
   function login (name){
+    console.log(name)
     setUser(name)
+    swal(name + " has been logged in")
   }
 
-
+console.log(user)
 
 
   return (
     <div className="App">
     <BrowserRouter>
-    <UserNav user={user}/>
+    <UserNav user={user} setUser={setUser}/>
     <Routes>
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/login" element={<Login login={login}/>}/>

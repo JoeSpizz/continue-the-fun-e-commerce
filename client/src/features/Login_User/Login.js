@@ -19,22 +19,21 @@ function handleChange(e){
 // logs in, returns errors from Rails if unsuccessful
 function attemptLogin(e){
     e.preventDefault()
-    swal(username + password)
-    // fetch('/login', {
-    //     method: "POST",
-    //     headers: {"Content-type" : "Application/json"},
-    //     body: JSON.stringify({
-    //         username : username, 
-    //         password : password}
-    //     )
-    // })
-    // .then (r=>{
-    //     if (r.ok) {
-    //     r.json().then(data=>login(data.username))
-    //     }
-    //     else{
-    //         r.json().then(data=>alert(data.errors))
-    //     }})
+    fetch('/login', {
+        method: "POST",
+        headers: {"Content-type" : "Application/json"},
+        body: JSON.stringify({
+            username : username, 
+            password : password}
+        )
+    })
+    .then (r=>{
+        if (r.ok) {
+        r.json().then(data=>login(data.username))
+        }
+        else{
+            r.json().then(data=>alert(data.errors))
+        }})
 }
 // along with ternary in the Return this sets visiblity of login vs create user form
 function toggleCreateUserForm(e){
@@ -50,7 +49,6 @@ function handleNewUserInput (e){
 // sends request to Rails for User Creation. Logs in User.
 function createUser(e){
     e.preventDefault()
-    console.log(newUser)
         fetch("/signup", {
             method: "POST",
             headers:{
@@ -95,12 +93,41 @@ function createUser(e){
                     type="password"
                     onChange={handleNewUserInput}
                     />
+                     <Form.Field
+                    id="passwordConfirmation"
+                    control={Input}
+                    label="Password Confirmation"
+                    placeholder="Type Password Again"
+                    name="password_confirmation"
+                    type="password"
+                    onChange={handleNewUserInput}
+                    />
                 </Form.Group>
+                <Form.Group>
+                <Form.Field
+                    id="newEmail"
+                    control={Input}
+                    label="Email"
+                    placeholder="Your Email"
+                    name="email"
+                    type="email"
+                    onChange={handleNewUserInput}
+                    />
+                     <Form.Field
+                    id="newAddress"
+                    control={Input}
+                    label="Address"
+                    placeholder="Your Address"
+                    name="address"
+                    type="address"
+                    onChange={handleNewUserInput}
+                    />
+                    </Form.Group>
                 <Form.Field 
             id="create-button"
             control={Button}
             content="Create"
-            label='Label with htmlFor'
+            label='Create'
             color="green"
             />
             </Form>
@@ -133,7 +160,7 @@ function createUser(e){
             id="login-button"
             control={Button}
             content="Login"
-            label='Label with htmlFor'
+            label=''
             color="green"
             />
         </Form>
