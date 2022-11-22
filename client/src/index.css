@@ -32,15 +32,24 @@ code {
   color: white;
 }
 .gameCardWish{
-  padding: 15px;
   color:white;
   flex-wrap: wrap;
-  max-width: 20rem;
+  max-width: 15rem;
   margin-left: 15px;
 }
+.gameCardWish li{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color: bisque;
+}
+.gameName{
+  display: flex;
+  justify-content: space-between;
+}
 .gameCardImage {
-  max-width: 20rem;
-  height: 20rem;
+  max-width: 15rem;
+  height: 15rem;
   display: block;
 margin-left: auto;
 }

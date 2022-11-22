@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
+import swal from 'sweetalert'
 
-function GameCardWish({game, publishWish}) {
+function GameCardWish({game, publishWish, exists, resetWishlist}) {
 
-    function addToWishlist(e){
-        console.log(game)
+    function addToWishlist(){
         fetch('/wishlists', {
             method: "POST",
             headers: {
@@ -12,18 +12,39 @@ function GameCardWish({game, publishWish}) {
             },
             body: JSON.stringify(game)
         })
-        .then(r=>r.json())
-        .then(data=>publishWish(data))
+        .then(r=> {if(r.ok){
+            r.json()
+            .then(data=>publishWish(data))}
+            else{
+                r.json().then(data=>{
+                    let error = data.errors[0]
+                    swal(error)})
+            }
+    })}
+
+    function removeFromWishlist(){
+        fetch(`wishlists/${game.id}`, {
+            method: "DELETE"
+        })
+        .then(resetWishlist(game))
     }
+
+
   return (
       <div className='gameCardWish'>
     <img className="gameCardImage" src={game.image_url} alt={game.name}/>
-    <h2 >{game.name}</h2>
-    <p >Expected Price: {game.price}</p>
-    <p>Players: {game.min_players}-{game.max_players}</p>
-    <p>Length (minimum): {game.min_playtime} minutes</p>
-    <p>Product Type: {game.type}</p>
-    <Button color="violet" onClick={addToWishlist}>Wishlist  <Icon name='add circle'/></Button>
+    <div className="gameName"><h4 >{game.name}</h4>
+    {exists ? <Button color="red" circular compact size="mini" icon="remove circle" onClick={removeFromWishlist}/> 
+   :
+    <Button color="violet" compact size="mini" onClick={addToWishlist}>Wishlist  <Icon name='add circle'/></Button>
+    }
+    </div>
+    <ul >
+        <li>Expected Price: {game.price}</li>
+        <li>Players: {game.min_players}-{game.max_players}</li>
+        <li>Length: {game.min_playtime} minutes</li>
+    </ul>
+  
    </div> 
   )
 }

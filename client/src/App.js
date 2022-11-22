@@ -37,10 +37,6 @@ function App() {
     setUser(user.username)
     swal(user.username + " has been logged in")
   }
-
-console.log(user)
-
-
   return (
     <div className="App">
     <BrowserRouter>

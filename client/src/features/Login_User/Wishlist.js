@@ -45,12 +45,19 @@ function closeSearch(){
 function publishWish(game){
   setWishlist([...wishlist, game])
 }
+function resetWishlist(game){
+  let newWishlist = wishlist.filter(item=> item.id !== game.id)
+  setWishlist(newWishlist)
+
+}
 
   if (!user) return <Login login={login}/>
   return (
     <div>
       <h1>Wishlist</h1>
-      {wishlist.map(game=><GameCardWish game={game} key={game.id}/>)}
+      <Card.Group>
+      {wishlist.map(game=><GameCardWish game={game} key={game.id} exists={true} resetWishlist={resetWishlist}/>)}
+      </Card.Group>
       <h3> Add a game, we'll notify you when it's available!</h3>
       <Form inverted onSubmit={handleSubmit}>
         <Form.Group>
@@ -62,7 +69,7 @@ function publishWish(game){
       
       {searchedGames ? 
       <Card.Group > 
-        {searchedGames.games.map(game=> <GameCardWish game={game} key={game.id} publishWish={publishWish}/>)}
+        {searchedGames.games.map(game=> <div><GameCardWish game={game} key={game.id} publishWish={publishWish} exists={false}/></div>)}
         </Card.Group>
         : null}
         
