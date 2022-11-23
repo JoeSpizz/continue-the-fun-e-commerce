@@ -1,5 +1,6 @@
 #body{
   background-color:  rgb(48, 45, 45);
+  height: 100vh;
 }
 #root {
   margin: 0;
@@ -10,7 +11,7 @@
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(48, 45, 45);
   color: azure;
-
+  height: 100vh;
 }
 
 code {
@@ -52,4 +53,25 @@ code {
   height: 15rem;
   display: block;
 margin-left: auto;
+margin-right: auto;
+}
+#gamecenter{
+  background-size: cover;
+  height: 100vh; 
+}
+#gamecenter img{
+  width: 100%;
+}
+.fullGame{
+  display: inline-flex;
+}
+.gameName{
+  font-size: 5rem;
+  padding-left: 50px;
+}
+
+.fullGame img {
+  padding-left: 15px;
+  max-width: 40vw;
+  max-height: 80vh;
 }

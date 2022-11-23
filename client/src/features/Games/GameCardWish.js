@@ -4,7 +4,8 @@ import swal from 'sweetalert'
 
 function GameCardWish({game, publishWish, exists, resetWishlist}) {
 
-    function addToWishlist(){
+    function addToWishlist(e){
+       e.preventDefault()
         fetch('/wishlists', {
             method: "POST",
             headers: {
@@ -22,16 +23,18 @@ function GameCardWish({game, publishWish, exists, resetWishlist}) {
             }
     })}
 
-    function removeFromWishlist(){
-        fetch(`wishlists/${game.id}`, {
+    function removeFromWishlist(e){
+        e.preventDefault();
+        console.log(game.id)
+        fetch(`/wishlists/${game.id}`, {
             method: "DELETE"
         })
         .then(resetWishlist(game))
     }
-
+  
 
   return (
-      <div className='gameCardWish'>
+      <div className='gameCardWish' >
     <img className="gameCardImage" src={game.image_url} alt={game.name}/>
     <div className="gameName"><h4 >{game.name}</h4>
     {exists ? <Button color="red" circular compact size="mini" icon="remove circle" onClick={removeFromWishlist}/> 
@@ -39,11 +42,6 @@ function GameCardWish({game, publishWish, exists, resetWishlist}) {
     <Button color="violet" compact size="mini" onClick={addToWishlist}>Wishlist  <Icon name='add circle'/></Button>
     }
     </div>
-    <ul >
-        <li>Expected Price: {game.price}</li>
-        <li>Players: {game.min_players}-{game.max_players}</li>
-        <li>Length: {game.min_playtime} minutes</li>
-    </ul>
   
    </div> 
   )

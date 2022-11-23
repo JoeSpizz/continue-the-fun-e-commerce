@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import UserNav from './features/Login_User/UserNav';
 import swal from 'sweetalert';
 import GameSearch from './features/Games/GameSearch';
+import GameCardFull from './features/Games/GameCardFull';
 
 function App() {
   // Handles logic for Logging in/setting user. 
@@ -49,6 +50,7 @@ function App() {
       <Route exact path="/wishlist" element ={<Wishlist user={userData} login={login}/>}/>
       <Route exact path="/gamecenter" element ={<GameCenter user={userData} login={login}/>}/>
       <Route exact path="/gamesearch" element ={<GameSearch/>}/>
+      <Route path ={`/boardgames/:name`} element={<GameCardFull user={userData}/>}/>
     </Routes>
     </BrowserRouter>
     </div>

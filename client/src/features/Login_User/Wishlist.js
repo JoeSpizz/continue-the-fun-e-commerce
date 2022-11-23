@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, Card, Form, Input } from 'semantic-ui-react'
 import swal from 'sweetalert'
 import GameCardWish from '../Games/GameCardWish'
@@ -8,7 +9,7 @@ function Wishlist({user,login}) {
   const[search, setSearch]=useState("")
   const[searchedGames, setSearchedGames] = useState(null)
   const[wishlist, setWishlist] = useState([])
-
+let navigate = useNavigate()
   useEffect(()=>{
     fetch('/wishlists')
     .then(r=>r.json())
@@ -50,13 +51,16 @@ function resetWishlist(game){
   setWishlist(newWishlist)
 
 }
-
+function cardClick(game){
+  
+  navigate(`/boardgames/${game.name}`)
+}
   if (!user) return <Login login={login}/>
   return (
     <div>
       <h1>Wishlist</h1>
       <Card.Group>
-      {wishlist.map(game=><GameCardWish game={game} key={game.id} exists={true} resetWishlist={resetWishlist}/>)}
+      {wishlist.map(game=><div onClick={()=>cardClick(game)}><GameCardWish game={game} key={game.id} exists={true} resetWishlist={resetWishlist}/></div>)}
       </Card.Group>
       <h3> Add a game, we'll notify you when it's available!</h3>
       <Form inverted onSubmit={handleSubmit}>
@@ -69,7 +73,7 @@ function resetWishlist(game){
       
       {searchedGames ? 
       <Card.Group > 
-        {searchedGames.games.map(game=> <div><GameCardWish game={game} key={game.id} publishWish={publishWish} exists={false}/></div>)}
+        {searchedGames.games.map(game=><div onClick={()=>cardClick(game)}><GameCardWish game={game} key={game.id} publishWish={publishWish} exists={false}/></div>)}
         </Card.Group>
         : null}
         
