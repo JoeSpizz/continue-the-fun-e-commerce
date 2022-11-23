@@ -4,16 +4,13 @@ import ShowMoreText from "react-show-more-text";
 function GameCardFull({user}) {
     const [game, setGame] = useState({})
     const [wishCheck, setWishCheck] = useState([])
+    console.log(window.location.pathname)
     useEffect(()=>{
         let route = window.location.pathname
         fetch(`${route}`)
         .then(r=>r.json())
         .then(data=>{
             setGame(data)
-            // if(game.wishlists){
-            // let test = game.wishlists.filter(item=> item.user_id === user.id)
-            // setWishCheck(test)
-            // }
         })
     },[])
 

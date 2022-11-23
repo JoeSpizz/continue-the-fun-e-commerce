@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Button, Card, Form, Input } from 'semantic-ui-react'
 import swal from 'sweetalert'
 import GameCardWish from '../Games/GameCardWish'
@@ -15,8 +15,6 @@ let navigate = useNavigate()
     .then(r=>r.json())
     .then(data=>setWishlist(data))
   }, [])
-
-
 
   function handleType(e){
     setSearch(e.target.value)
@@ -52,8 +50,19 @@ function resetWishlist(game){
 
 }
 function cardClick(game){
-  
-  navigate(`/boardgames/${game.name}`)
+  //Check if the game exists in database HERE. Post request with game AS if it was a wishlist add?
+  fetch(`/boardgames`, {
+    method: "POST",
+    headers: {
+        "Content-type": "Application/json"
+    },
+    body: JSON.stringify(game)
+})
+.then(r=> {if(r.ok){
+  navigate(`/boardgames/${game.name}`)}
+  else{
+    swal("something went wrong")}
+  })
 }
   if (!user) return <Login login={login}/>
   return (
