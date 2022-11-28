@@ -59,7 +59,7 @@ function resetWishlist(game){
 
 
 function cardClick(game){
-  //Check if the game exists in database HERE. Post request with game AS if it was a wishlist add?
+  // Check if the game exists in database HERE. Post request with game AS if it was a wishlist add?
   fetch(`/boardgames`, {
     method: "POST",
     headers: {
@@ -67,8 +67,11 @@ function cardClick(game){
     },
     body: JSON.stringify(game)
 })
-.then(r=> {if(r.ok){
-  navigate(`/boardgames/${game.name}`)}
+.then(r=> {if(r.ok){r.json().then(data=>{
+ 
+  navigate(`/boardgames/${data.id}`)
+})
+}
   else{
     swal("something went wrong")}
   })
@@ -80,8 +83,8 @@ function cardClick(game){
       <h1>Wishlist</h1>
       <Card.Group>
       {wishTest.map(game=><div 
-      // onClick={()=>cardClick(game)}
-      ><GameCardWish game={game} key={game.id} exists={true} resetWishlist={resetWishlist}/></div>)}
+      onClick={()=>cardClick(game)}
+      ><GameCardWish game={game} key={game.id} isList={true} resetWishlist={resetWishlist}/></div>)}
       </Card.Group>
       <h3> Add a game, we'll notify you when it's available!</h3>
       <Form inverted onSubmit={handleSubmit}>
@@ -95,8 +98,8 @@ function cardClick(game){
       {searchedGames ? 
       <Card.Group > 
         {searchedGames.games.map(game=><div 
-        // onClick={()=>cardClick(game)}
-        ><GameCardWish game={game} key={game.id} publishWish={publishWish} exists={false}/></div>)}
+        onClick={()=>cardClick(game)}
+        ><GameCardWish game={game} key={game.id} isList={false} publishWish={publishWish} /></div>)}
         </Card.Group>
         : null}
         

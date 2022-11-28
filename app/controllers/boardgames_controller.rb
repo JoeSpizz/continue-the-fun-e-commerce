@@ -1,6 +1,6 @@
 class BoardgamesController < ApplicationController
     def show
-        game = Boardgame.find_by(name: params[:id])
+        game = Boardgame.find_by(id: params[:id])
     
         render json: game, status: :accepted
     end

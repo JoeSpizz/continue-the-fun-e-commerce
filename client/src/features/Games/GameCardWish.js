@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Button, Icon } from 'semantic-ui-react'
 import swal from 'sweetalert'
 
-function GameCardWish({game, publishWish, exists, resetWishlist}) {
-
+function GameCardWish({game, publishWish, resetWishlist, isList}) {
+    const wishlist = useSelector(state=>(state.wishlist.entities))
+    const [exist, setExist] = useState([])
+    useEffect(()=>{
+        let test = wishlist.filter(item=> item.name === game.name)
+        setExist(test)
+    }, [wishlist, game.name])
     function addToWishlist(e){
-    //    e.preventDefault()
-    //    e.stopPropagation()
         fetch('/wishlists', {
             method: "POST",
             headers: {
@@ -22,7 +26,9 @@ function GameCardWish({game, publishWish, exists, resetWishlist}) {
                     let error = data.errors[0]
                     swal(error)})
             }
-    })}
+            })
+            e.stopPropagation()
+    }
 
     function removeFromWishlist(e){
         e.preventDefault();
@@ -30,6 +36,7 @@ function GameCardWish({game, publishWish, exists, resetWishlist}) {
             method: "DELETE"
         })
         .then(resetWishlist(game))
+        e.stopPropagation()
     }
   
 
@@ -37,10 +44,13 @@ function GameCardWish({game, publishWish, exists, resetWishlist}) {
       <div className='gameCardWish' >
     <img className="gameCardImage" src={game.image_url} alt={game.name}/>
     <div className="gameName"><h4 >{game.name}</h4>
-    {exists ? <Button color="red" circular compact size="mini" icon="remove circle" onClick={removeFromWishlist}/> 
-   :
-    <Button color="violet" compact size="mini" onClick={addToWishlist}>Wishlist  <Icon name='add circle'/></Button>
+    
+
+    {isList ? <Button color="red" circular compact size="mini" icon="remove circle" onClick={removeFromWishlist}/> : null}
+    {(exist.length > 0) && (isList===false) ? <Button color="grey" disabled compact size="mini">Wished</Button> 
+   :null
     }
+    {(exist.length === 0) && (isList===false) ? <Button color="violet" compact size="mini" onClick={addToWishlist}>Wishlist  <Icon name='add circle'/></Button> : null}
     </div>
   
    </div> 
