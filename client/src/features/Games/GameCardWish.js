@@ -5,7 +5,8 @@ import swal from 'sweetalert'
 function GameCardWish({game, publishWish, exists, resetWishlist}) {
 
     function addToWishlist(e){
-       e.preventDefault()
+    //    e.preventDefault()
+    //    e.stopPropagation()
         fetch('/wishlists', {
             method: "POST",
             headers: {

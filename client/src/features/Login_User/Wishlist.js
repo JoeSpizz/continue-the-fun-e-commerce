@@ -4,17 +4,21 @@ import { Button, Card, Form, Input } from 'semantic-ui-react'
 import swal from 'sweetalert'
 import GameCardWish from '../Games/GameCardWish'
 import Login from './Login'
+import { fetchWishlist } from './wishlistSlice'
+import { useSelector, useDispatch } from "react-redux"
 
 function Wishlist({user,login}) {
   const[search, setSearch]=useState("")
   const[searchedGames, setSearchedGames] = useState(null)
   const[wishlist, setWishlist] = useState([])
+  const dispatch = useDispatch()
+  const wishTest = useSelector(state=>(state.wishlist.entities))
 let navigate = useNavigate()
   useEffect(()=>{
-    fetch('/wishlists')
-    .then(r=>r.json())
-    .then(data=>setWishlist(data))
-  }, [])
+    dispatch(fetchWishlist())
+  }, [dispatch])
+ 
+  console.log(wishTest)
 
   function handleType(e){
     setSearch(e.target.value)
@@ -42,7 +46,10 @@ function closeSearch(){
   setSearchedGames(null)
 }
 function publishWish(game){
-  setWishlist([...wishlist, game])
+  dispatch({
+    type: "wishlistAdded",
+    action: game
+  })
 }
 function resetWishlist(game){
   let newWishlist = wishlist.filter(item=> item.id !== game.id)
@@ -69,7 +76,7 @@ function cardClick(game){
     <div>
       <h1>Wishlist</h1>
       <Card.Group>
-      {wishlist.map(game=><div onClick={()=>cardClick(game)}><GameCardWish game={game} key={game.id} exists={true} resetWishlist={resetWishlist}/></div>)}
+      {wishTest.map(game=><div onClick={()=>cardClick(game)}><GameCardWish game={game} key={game.id} exists={true} resetWishlist={resetWishlist}/></div>)}
       </Card.Group>
       <h3> Add a game, we'll notify you when it's available!</h3>
       <Form inverted onSubmit={handleSubmit}>
@@ -82,7 +89,9 @@ function cardClick(game){
       
       {searchedGames ? 
       <Card.Group > 
-        {searchedGames.games.map(game=><div onClick={()=>cardClick(game)}><GameCardWish game={game} key={game.id} publishWish={publishWish} exists={false}/></div>)}
+        {searchedGames.games.map(game=><div 
+        // onClick={()=>cardClick(game)}
+        ><GameCardWish game={game} key={game.id} publishWish={publishWish} exists={false}/></div>)}
         </Card.Group>
         : null}
         

@@ -3,13 +3,14 @@ import ShowMoreText from "react-show-more-text";
 
 function GameCardFull({user}) {
     const [game, setGame] = useState({})
-    const [wishCheck, setWishCheck] = useState([])
-    console.log(window.location.pathname)
+  
     useEffect(()=>{
         let route = window.location.pathname
+        console.log(route)
         fetch(`${route}`)
         .then(r=>r.json())
         .then(data=>{
+            console.log(data)
             setGame(data)
         })
     },[])

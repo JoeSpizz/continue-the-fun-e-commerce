@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
   resources :wishlists
-  resources :boardgames
+  resources :boardgames,
+    format: false,
+  defaults: {format: 'html'},
+  constraints: {files: /.*/}
   resources :users
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
