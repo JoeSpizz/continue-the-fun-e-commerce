@@ -25,20 +25,17 @@ const wishlistSlice = createSlice({
   reducers:{
     wishlistAdded(state,action){
       state.entities.push(action.payload)
-      return state.entities
     },
-    wishlistUpdated(state,action){
-      const cat = state.entities.find((cat)=> cat.id === action.payload.id)
-      cat.url = action.payload.url
-    },
+    wishlistRemoved(state,action){
+        const id = action.payload.id
+        const list = state.entities.filter(item=> item.id!==id)
+       state.entities = list
+       return state
+    }
   },
     extraReducers: {
-      [fetchWishlist.pending](state){
-        state.status="loading";
-      },
       [fetchWishlist.fulfilled](state,action){
         state.entities = action.payload;
-        state.status="idle";
       },
     },
 })

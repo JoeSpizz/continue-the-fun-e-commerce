@@ -26,7 +26,6 @@ function GameCardWish({game, publishWish, exists, resetWishlist}) {
 
     function removeFromWishlist(e){
         e.preventDefault();
-        console.log(game.id)
         fetch(`/wishlists/${game.id}`, {
             method: "DELETE"
         })

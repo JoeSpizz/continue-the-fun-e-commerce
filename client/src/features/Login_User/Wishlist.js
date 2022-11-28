@@ -10,15 +10,14 @@ import { useSelector, useDispatch } from "react-redux"
 function Wishlist({user,login}) {
   const[search, setSearch]=useState("")
   const[searchedGames, setSearchedGames] = useState(null)
-  const[wishlist, setWishlist] = useState([])
   const dispatch = useDispatch()
   const wishTest = useSelector(state=>(state.wishlist.entities))
 let navigate = useNavigate()
   useEffect(()=>{
     dispatch(fetchWishlist())
   }, [dispatch])
- 
-  console.log(wishTest)
+//  const name = wishTest
+  // console.log(name)
 
   function handleType(e){
     setSearch(e.target.value)
@@ -47,15 +46,18 @@ function closeSearch(){
 }
 function publishWish(game){
   dispatch({
-    type: "wishlistAdded",
-    action: game
+    type: "wishlist/wishlistAdded",
+    payload: game
   })
 }
 function resetWishlist(game){
-  let newWishlist = wishlist.filter(item=> item.id !== game.id)
-  setWishlist(newWishlist)
-
+  dispatch({
+    type: "wishlist/wishlistRemoved",
+    payload: game
+  })
 }
+
+
 function cardClick(game){
   //Check if the game exists in database HERE. Post request with game AS if it was a wishlist add?
   fetch(`/boardgames`, {
@@ -71,12 +73,15 @@ function cardClick(game){
     swal("something went wrong")}
   })
 }
+
   if (!user) return <Login login={login}/>
   return (
     <div>
       <h1>Wishlist</h1>
       <Card.Group>
-      {wishTest.map(game=><div onClick={()=>cardClick(game)}><GameCardWish game={game} key={game.id} exists={true} resetWishlist={resetWishlist}/></div>)}
+      {wishTest.map(game=><div 
+      // onClick={()=>cardClick(game)}
+      ><GameCardWish game={game} key={game.id} exists={true} resetWishlist={resetWishlist}/></div>)}
       </Card.Group>
       <h3> Add a game, we'll notify you when it's available!</h3>
       <Form inverted onSubmit={handleSubmit}>
