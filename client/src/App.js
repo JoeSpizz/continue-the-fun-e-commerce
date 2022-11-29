@@ -17,6 +17,8 @@ import UserNav from './features/Login_User/UserNav';
 import swal from 'sweetalert';
 import GameSearch from './features/Games/GameSearch';
 import GameCardFull from './features/Games/GameCardFull';
+import SellGame from './features/MarketPlace/SellGame';
+import OfferGame from './features/MarketPlace/OfferGame';
 
 function App() {
   // Handles logic for Logging in/setting user. 
@@ -46,7 +48,7 @@ function App() {
         });
   
   }
-  console.log(userData)
+
   return (
     <div className="App">
     <BrowserRouter>
@@ -60,6 +62,8 @@ function App() {
       <Route exact path="/gamecenter" element ={<GameCenter user={userData} login={login}/>}/>
       <Route exact path="/gamesearch" element ={<GameSearch/>}/>
       <Route path ={`/boardgames/:name`} element={<GameCardFull user={userData}/>}/>
+      <Route path ='/sellGame' element={<SellGame/>}/>
+      <Route path ='/offerGame' element={<OfferGame/>}/>
     </Routes>
     </BrowserRouter>
     </div>

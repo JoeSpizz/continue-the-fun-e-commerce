@@ -75,3 +75,36 @@ margin-right: auto;
   max-width: 40vw;
   max-height: 80vh;
 }
+#listCard {
+  margin-left: 20vw;
+  margin-top: 10vh;
+  background-color: #CD6AF0;
+  width: 400px;
+}
+#listCardHead{
+  padding: 10px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+#listCardContent{
+  color: black;
+  font-size: 1.5rem;
+  line-height: 35px;
+}
+#listCardBtn{
+  width: 80%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.miniCard{
+  display: inline-flex;
+  padding: 15px;
+  border: #CD6AF0;
+  border-width: 5px;
+  border-style: dashed;
+  width: 400px;
+}
+.miniCard img{
+  height: 50px;
+}
