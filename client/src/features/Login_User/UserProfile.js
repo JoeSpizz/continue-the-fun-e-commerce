@@ -2,7 +2,8 @@ import React from 'react'
 import Login from './Login';
 
 function UserProfile({user, login}) {
-  if (!user) return <Login login={login}/>
+  // console.log(user)
+  if (!user || Object.keys(user).length===0) return <Login login={login}/>
   return (
     <div>
   

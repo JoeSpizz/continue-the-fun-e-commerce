@@ -77,7 +77,7 @@ function cardClick(game){
   })
 }
 
-  if (!user) return <Login login={login}/>
+  if (!user|| Object.keys(user).length===0) return <Login login={login}/>
   return (
     <div>
       <h1>Wishlist</h1>

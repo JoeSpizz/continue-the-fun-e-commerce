@@ -22,7 +22,6 @@ function App() {
   // Handles logic for Logging in/setting user. 
   const [user, setUser]= useState(null)
   const [userData, setUserData]= useState({})
-
   useEffect(()=>{
     fetch('/me')
     .then(r=>{
@@ -33,15 +32,25 @@ function App() {
   }, [])
 
   function login (user){
-    console.log(user)
     setUserData(user)
     setUser(user.username)
     swal(user.username + " has been logged in")
   }
+  const logout = ()=>{
+      fetch("/logout", { method: "DELETE" }).then((r) => {
+          if (r.ok) {
+            setUser(null);
+            setUserData(null)
+            swal("You have been logged out")
+          }
+        });
+  
+  }
+  console.log(userData)
   return (
     <div className="App">
     <BrowserRouter>
-    <UserNav user={user} setUser={setUser}/>
+    <UserNav user={user} setUser={setUser} logout={logout}/>
     <Routes>
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/login" element={<Login login={login}/>}/>

@@ -29,7 +29,7 @@ function attemptLogin(e){
     })
     .then (r=>{
         if (r.ok) {
-        r.json().then(data=>login(data.username))
+        r.json().then(data=>login(data))
         }
         else{
             r.json().then(data=>alert(data.errors))
@@ -60,6 +60,7 @@ function createUser(e){
             .then (r=>{
                 if (r.ok) {
                 r.json().then(data=>swal(data.username+ " created, please log in"))
+                setCreate(!create)
                 }
                 else{
                     r.json().then(data=>swal(data.errors))

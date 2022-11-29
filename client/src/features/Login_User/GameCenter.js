@@ -5,7 +5,7 @@ import Login from './Login'
 function GameCenter({user, login}) {
 
 
-  if (!user) return <Login login={login}/>
+  if (!user || Object.keys(user).length===0) return <Login login={login}/>
   return (
     <div id="gamecenter" style={{ 
       backgroundImage: `url("https://res.cloudinary.com/doqo7su1s/image/upload/v1669141704/GameCenter_Background_gtwzn8.jpg")` 

@@ -1,20 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Dropdown, Menu } from 'semantic-ui-react'
-import swal from 'sweetalert'
 
-function UserNav({ user, setUser}) {
+
+function UserNav({ user, logout}) {
 const[search, setSearch]= useState("")
 const navigate = useNavigate()
-    function logout (){
-        fetch("/logout", { method: "DELETE" }).then((r) => {
-            if (r.ok) {
-              setUser(null);
-              swal("You have been logged out")
-              navigate('/')
-            }
-          });
-    }
+   
+    // console.log(user)
 function handleSearch(e){
     setSearch(e.target.value)
 }
@@ -55,9 +48,7 @@ function handleSearch(e){
                     </Dropdown.Item>
                     {user ? <Dropdown.Item onClick={logout}>
                         Logout
-                    </Dropdown.Item> : <Dropdown.Item as={Link} to="/login">
-                        Login
-                    </Dropdown.Item> }
+                    </Dropdown.Item> : null }
                 </Dropdown.Menu>
             </Dropdown>
         </Menu>
