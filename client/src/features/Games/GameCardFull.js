@@ -5,7 +5,7 @@ import { Button, Icon } from 'semantic-ui-react';
 import swal from 'sweetalert';
 
 
-function GameCardFull({user}) {
+function GameCardFull() {
     const [game, setGame] = useState({})
     const wishlist = useSelector(state=>(state.wishlist.entities))
     const [exist, setExist] = useState([])

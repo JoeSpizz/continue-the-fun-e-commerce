@@ -98,13 +98,46 @@ margin-right: auto;
   margin-bottom: 20px;
 }
 .miniCard{
-  display: inline-flex;
   padding: 15px;
-  border: #CD6AF0;
-  border-width: 5px;
-  border-style: dashed;
-  width: 400px;
+  width: 100%;
+  display: inline-flex;
+  position: relative;
 }
 .miniCard img{
-  height: 50px;
+  width: 150px;
+}
+.miniDetails{
+  color: #CD6AF0;
+}
+.listingPage{
+  display: grid;
+  grid-template-columns: [first] 10vw [line2] 25vw [line3] 10vw [col4-start] 50vw ;
+  grid-template-rows: 150px 
+}
+#listingForm{
+  grid-column: 2;
+  grid-row: 2;
+  width: 5px;
+}
+#listingCards{
+  grid-column: 4;
+  grid-row: 2;
+}
+#listingTitle{
+  font-size: 4rem;
+  grid-column: 1 / span 5;
+  text-align: center;
+}
+#offerIntro {
+  background-color: #CD6AF0;
+  margin-top: 50px;
+}
+#offerIntro :first-child{
+  font-size: 2rem;
+  text-align: center;
+  padding: 5px;
+}
+#offerIntro :nth-child(2){
+  color: black;
+  font-weight: bold;
 }

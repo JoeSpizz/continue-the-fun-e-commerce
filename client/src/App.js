@@ -19,6 +19,7 @@ import GameSearch from './features/Games/GameSearch';
 import GameCardFull from './features/Games/GameCardFull';
 import SellGame from './features/MarketPlace/SellGame';
 import OfferGame from './features/MarketPlace/OfferGame';
+import PotentialListing from './features/MarketPlace/PotentialListing';
 
 function App() {
   // Handles logic for Logging in/setting user. 
@@ -61,9 +62,10 @@ function App() {
       <Route exact path="/wishlist" element ={<Wishlist user={userData} login={login}/>}/>
       <Route exact path="/gamecenter" element ={<GameCenter user={userData} login={login}/>}/>
       <Route exact path="/gamesearch" element ={<GameSearch/>}/>
-      <Route path ={`/boardgames/:name`} element={<GameCardFull user={userData}/>}/>
-      <Route path ='/sellGame' element={<SellGame/>}/>
-      <Route path ='/offerGame' element={<OfferGame/>}/>
+      <Route path ={`/boardgames/:id`} element={<GameCardFull/>}/>
+      <Route path ='/sellGame' element={<SellGame user={userData} login={login}/>}/>
+      <Route path ='/offerGame' element={<OfferGame user={userData} login={login}/>}/>
+      <Route path ={`listing/:id`} element={<PotentialListing/>}/>
     </Routes>
     </BrowserRouter>
     </div>
