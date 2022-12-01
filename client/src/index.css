@@ -141,3 +141,8 @@ margin-right: auto;
   color: black;
   font-weight: bold;
 }
+.potentialListing{
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 75vw;
+}
