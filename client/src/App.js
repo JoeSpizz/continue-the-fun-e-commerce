@@ -17,7 +17,6 @@ import UserNav from './features/Login_User/UserNav';
 import swal from 'sweetalert';
 import GameSearch from './features/Games/GameSearch';
 import GameCardFull from './features/Games/GameCardFull';
-import SellGame from './features/MarketPlace/SellGame';
 import OfferGame from './features/MarketPlace/OfferGame';
 import PotentialListing from './features/MarketPlace/PotentialListing';
 
@@ -63,9 +62,9 @@ function App() {
       <Route exact path="/gamecenter" element ={<GameCenter user={userData} login={login}/>}/>
       <Route exact path="/gamesearch" element ={<GameSearch/>}/>
       <Route path ={`/boardgames/:id`} element={<GameCardFull/>}/>
-      <Route path ='/sellGame' element={<SellGame user={userData} login={login}/>}/>
-      <Route path ='/offerGame' element={<OfferGame user={userData} login={login}/>}/>
-      <Route path ={`listing/:id`} element={<PotentialListing/>}/>
+      <Route path ='/listGame' element={<OfferGame user={userData} login={login}/>}/>
+      <Route path ={`offer/:id`} element={<PotentialListing/>}/>
+      <Route path ={`sell/:id`} element={<PotentialListing/>}/>
     </Routes>
     </BrowserRouter>
     </div>

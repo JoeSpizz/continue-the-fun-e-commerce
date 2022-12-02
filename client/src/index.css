@@ -106,6 +106,9 @@ margin-right: auto;
 .miniCard img{
   width: 150px;
 }
+.ui {
+margin-left: 10px;
+}
 .miniDetails{
   color: #CD6AF0;
 }
@@ -142,7 +145,6 @@ margin-right: auto;
   font-weight: bold;
 }
 .potentialListing{
-  margin-top: 10px;
-  margin-left: 10px;
-  width: 75vw;
+padding: 20px;
+  display: inline-flex;
 }
