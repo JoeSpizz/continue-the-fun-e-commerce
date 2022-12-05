@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Input, Popup, Radio } from 'semantic-ui-react'
+import { Button, Form, Input, Popup, Radio } from 'semantic-ui-react'
 import swal from 'sweetalert'
 
 function PotentialListing() {
@@ -17,12 +17,28 @@ function PotentialListing() {
                 title: data.name,
                 price: (data.price)/2,
                 condition: "decent",
-                conditionDetails: ""
+                conditionDetails: "",
+                game_id: game.id
             })
         })
         // swal("Any listed game MUST contain all of the pieces.")
-    },[route])
-
+    },[route, game.id])
+    console.log(game.id)
+    const listGame =(e)=>{
+        e.preventDefault()
+        
+    //   send listing to Ruby
+      fetch('/marketplace', {
+          method: "POST",
+          headers:{
+              "Content-type": "Application/json"
+          },
+          body: JSON.stringify(
+            listing
+          )
+      })
+    }
+    
     const listingChange = (e)=>{
         let key = e.target.name
         let value = e.target.value
@@ -30,7 +46,7 @@ function PotentialListing() {
             setListing({...listing,
             [key]: value})
     }
-    console.log(listing)
+ 
 
     const handleChange = (e, { value }) => {
         setSelect(value)
@@ -41,7 +57,7 @@ function PotentialListing() {
     <div >
       <div className='potentialListing'>
         <img src={game.image_url} alt={game.name}/>
-        <Form inverted >
+        <Form inverted onSubmit={listGame}>
            <Popup trigger={
         <Form.Field 
         label="Title" inline
@@ -119,6 +135,7 @@ function PotentialListing() {
                 placeholder="List specific details about the games condition"
                 onChange={listingChange}
             />
+            <Button type="submit">Create Listing!</Button>
         </Form>
         </div>
     </div>

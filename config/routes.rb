@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :marketplace_items
   resources :wishlists
   resources :boardgames,
     format: false,
