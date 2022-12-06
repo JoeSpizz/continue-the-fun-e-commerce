@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Form, Input, Popup, Radio } from 'semantic-ui-react'
 import swal from 'sweetalert'
 
@@ -6,6 +7,7 @@ function PotentialListing() {
     const[game, setGame]=useState({})
     const[listing, setListing] =useState({})
     const[select, setSelect]=useState("")
+    const navigate = useNavigate()
     let route = window.location.pathname
    const isItOffer = route.charAt(1)
     useEffect(()=>{
@@ -13,22 +15,31 @@ function PotentialListing() {
         .then(r=>r.json())
         .then(data=>{
             setGame(data)
-            setListing({
+            let test = window.location.pathname.charAt(1)
+            if(test === 'o'){
+                setListing({
+                    title: data.name,
+                    price: null,
+                    condition: "decent",
+                    condition_detail: "",
+                    boardgame_id: game.id
+                })
+            }
+            else {setListing({
                 title: data.name,
                 price: (data.price)/2,
                 condition: "decent",
-                conditionDetails: "",
-                game_id: game.id
-            })
+                condition_detail: "",
+                boardgame_id: game.id
+            })}
         })
         // swal("Any listed game MUST contain all of the pieces.")
     },[route, game.id])
-    console.log(game.id)
+    console.log(listing)
     const listGame =(e)=>{
         e.preventDefault()
-        
-    //   send listing to Ruby
-      fetch('/marketplace', {
+    //   send listing to Ruby. if statement checks if we're offering vs selling by checking route. Then alters price if needed.
+      fetch('/marketplace_items', {
           method: "POST",
           headers:{
               "Content-type": "Application/json"
@@ -37,6 +48,14 @@ function PotentialListing() {
             listing
           )
       })
+      .then (r=>{
+        if (r.ok) {
+        swal("Thank you for listing with Continue the Fun")
+            navigate('/gamecenter')
+        }
+        else{
+            r.json().then(data=>swal(data.errors))
+        }})
     }
     
     const listingChange = (e)=>{
@@ -129,9 +148,9 @@ function PotentialListing() {
         </Form.Group>
             <Form.Field
                 control={Input}
-                label="Condition Details" inline
-                name="conditionDetails"
-                value={`${listing.conditionDetails}`}
+                label="Condition Detail" inline
+                name="condition_detail"
+                value={`${listing.condition_detail}`}
                 placeholder="List specific details about the games condition"
                 onChange={listingChange}
             />

@@ -19,6 +19,7 @@ import GameSearch from './features/Games/GameSearch';
 import GameCardFull from './features/Games/GameCardFull';
 import OfferGame from './features/MarketPlace/OfferGame';
 import PotentialListing from './features/MarketPlace/PotentialListing';
+import MarketplaceSearch from './features/MarketPlace/MarketplaceSearch';
 
 function App() {
   // Handles logic for Logging in/setting user. 
@@ -65,6 +66,7 @@ function App() {
       <Route path ='/listGame' element={<OfferGame user={userData} login={login}/>}/>
       <Route path ={`offer/:id`} element={<PotentialListing/>}/>
       <Route path ={`sell/:id`} element={<PotentialListing/>}/>
+      <Route path ="/marketplace_search" element={<MarketplaceSearch/>}/>
     </Routes>
     </BrowserRouter>
     </div>

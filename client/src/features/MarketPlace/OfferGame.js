@@ -4,6 +4,9 @@ import swal from 'sweetalert'
 import Login from '../Login_User/Login'
 import MiniGameCard from './MiniGameCard'
 
+
+//This component handles logic for both Offering and Selling a game. 
+
 function OfferGame({user, login}) {
     const [search, setSearch] = useState("")
     const [found, setFound] = useState(null)
