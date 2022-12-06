@@ -41,14 +41,12 @@ function handleSubmit(e){
     }
   })
 }
-function closeSearch(){
-  setSearchedGames(null)
-}
 function publishWish(game){
   dispatch({
     type: "wishlist/wishlistAdded",
     payload: game
   })
+  setSearchedGames(null)
 }
 function resetWishlist(game){
   dispatch({
@@ -80,18 +78,11 @@ function cardClick(game){
   if (!user|| Object.keys(user).length===0) return <Login login={login}/>
   return (
     <div>
-      <h1>Wishlist</h1>
-      <Card.Group>
-      {wishTest.map(game=><div 
-      onClick={()=>cardClick(game)}
-      ><GameCardWish game={game} key={game.id} isList={true} resetWishlist={resetWishlist}/></div>)}
-      </Card.Group>
-      <h3> Add a game, we'll notify you when it's available!</h3>
+       <h3> Add a game, we'll notify you when it's available!</h3>
       <Form inverted onSubmit={handleSubmit}>
         <Form.Group>
-        <Form.Field onChange={handleType} type="text" control={Input} placeholder="Search for Game" icon="searchengin"/>
+        <Form.Field onChange={handleType} type="text" control={Input} placeholder="Search for Game" icon="searchengin" value={search}/>
         <Button type="submit">Find</Button>
-        <Button onClick={closeSearch}>Close</Button>
         </Form.Group>
       </Form>
       
@@ -102,6 +93,13 @@ function cardClick(game){
         ><GameCardWish game={game} key={game.id} isList={false} publishWish={publishWish} /></div>)}
         </Card.Group>
         : null}
+      <h1>Your Wishlist</h1>
+      <Card.Group>
+      {wishTest.map(game=><div 
+      onClick={()=>cardClick(game)}
+      ><GameCardWish game={game} key={game.id} isList={true} resetWishlist={resetWishlist}/></div>)}
+      </Card.Group>
+     
         
     </div>
   )

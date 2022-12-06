@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { Button, Form, Input } from 'semantic-ui-react'
+import { useLocation, Link } from 'react-router-dom'
+import { Form, Input, Message } from 'semantic-ui-react'
+import MiniMarketCard from './MiniMarketCard'
 
 function MarketplaceSearch() {
     const state = useLocation()
@@ -24,14 +25,14 @@ function MarketplaceSearch() {
       }
   return (
     <div>
+        <a href="/">Back to Marketplace</a>
+        <h2>There's always more fun to be had!</h2>
          <Form inverted>
         <Form.Group>
         <Form.Field onChange={handleType} type="text" control={Input} placeholder="Search for Game" icon="searchengin" value={search}/>
-        <Button type="submit">Find</Button>
-        {/* <Button onClick={closeSearch}>Close</Button> */}
         </Form.Group>
       </Form>
-      {found.length>0 ? found.map(game=> game.title): "No games found, search to add a game to wishlist?"}
+      {found.length>0 ? found.map(game=> <MiniMarketCard {...game} key={game.id}/>): <Message negative as={Link} to={'/wishlist'}>We couldn't find a match amongst currently listed games. Would you like to search for and add this game to your wishlist?</Message>}
     </div>
   )
 }

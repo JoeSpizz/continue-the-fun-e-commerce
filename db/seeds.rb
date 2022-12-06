@@ -9,3 +9,4 @@
 
 # https://api.boardgameatlas.com/api/search?limit=100&skip=0&pretty=true&client_id=cXouSHFcOH
 # use this for seeding board games. You'll want to run multiple and up the skip by 100 each time to get full list. 
+MarketplaceItem.create(title: )

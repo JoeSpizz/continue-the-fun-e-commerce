@@ -31,16 +31,13 @@ const handleSubmit= (e)=>{
         <Form.Group>
         <Form.Field onChange={handleType} type="text" control={Input} placeholder="Search for Game" icon="searchengin"/>
         <Button type="submit">Find</Button>
-        {/* <Button onClick={closeSearch}>Close</Button> */}
         </Form.Group>
       </Form>
-
-      {/* game search here. If NO games come back prompt to send them to wishlist */}
 
         <h2> For Sale:</h2>
         <Grid>
           {
-        sale.map(game=><MiniMarketCard {...game} key={game.id}/>)
+        sale.map(game=><MiniMarketCard {...game} key={game.id} />)
         }
          </Grid>
           <h2> Free (shipping sometimes required):</h2>

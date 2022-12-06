@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import swal from 'sweetalert'
-
+// THIS IS THE COMPONENT FOR A POTENTIAL LISTING SERACH FOR A GAME
 function MiniGameCard(game) {
     let navigate = useNavigate()
     const sellGame = ()=>{
