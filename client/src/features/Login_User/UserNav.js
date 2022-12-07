@@ -7,7 +7,6 @@ import { Dropdown, Icon, Menu } from 'semantic-ui-react'
 function UserNav({ user, logout}) {
 
     const cartTest = useSelector(state=>state.cart.entities)
-    console.log(cartTest.length)
    
 
   return (

@@ -21,11 +21,15 @@ import OfferGame from './features/MarketPlace/OfferGame';
 import PotentialListing from './features/MarketPlace/PotentialListing';
 import MarketplaceSearch from './features/MarketPlace/MarketplaceSearch';
 import BigMarketCard from './features/MarketPlace/BigMarketCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCart } from './features/MarketPlace/cartSlice';
 
 function App() {
   // Handles logic for Logging in/setting user. 
   const [user, setUser]= useState(null)
   const [userData, setUserData]= useState({})
+  const dispatch = useDispatch()
+  const cart = useSelector(state=>state.cart.entities)
   useEffect(()=>{
     fetch('/me')
     .then(r=>{
@@ -34,6 +38,11 @@ function App() {
           setUserData(data)
           setUser(data.username)})}})
   }, [])
+
+
+  useEffect(()=>{
+    dispatch(fetchCart())
+  }, [dispatch])
 
   function login (user){
     setUserData(user)
@@ -59,7 +68,7 @@ function App() {
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/login" element={<Login login={login}/>}/>
       <Route exact path="/profile" element={<UserProfile user={userData} login={login}/>}/>
-      <Route exact path="/cart" element={<Cart user={user} />}/>
+      <Route exact path="/cart" element={<Cart user={user} cart={cart} login={login}/>}/>
       <Route exact path="/wishlist" element ={<Wishlist user={userData} login={login}/>}/>
       <Route exact path="/gamecenter" element ={<GameCenter user={userData} login={login}/>}/>
       <Route exact path="/gamesearch" element ={<GameSearch/>}/>

@@ -12,4 +12,13 @@ class CartsController < ApplicationController
         update.save
         render json: item, status: :created
     end
+
+    def destroy 
+        item = Cart.find_by(id: params[:id])
+        test =item.marketplace_item 
+        test.available = true
+        test.save
+        item.destroy
+        head :no_content
+    end
 end

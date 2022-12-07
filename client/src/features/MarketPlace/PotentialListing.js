@@ -22,7 +22,8 @@ function PotentialListing() {
                     price: null,
                     condition: "decent",
                     condition_detail: "",
-                    boardgame_id: game.id
+                    boardgame_id: game.id,
+                    image : game.image_url
                 })
             }
             else {setListing({
@@ -30,12 +31,13 @@ function PotentialListing() {
                 price: (data.price)/2,
                 condition: "decent",
                 condition_detail: "",
-                boardgame_id: game.id
+                boardgame_id: game.id,
+                image : game.image_url
             })}
         })
         // swal("Any listed game MUST contain all of the pieces.")
-    },[route, game.id])
-    console.log(listing)
+    },[route, game.id, game.image_url])
+
     const listGame =(e)=>{
         e.preventDefault()
     //   send listing to Ruby. if statement checks if we're offering vs selling by checking route. Then alters price if needed.
@@ -113,36 +115,36 @@ function PotentialListing() {
           <Form.Field
             control={Radio}
             label='Like New'
-            value='like_new'
-            checked={select === 'like_new'}
+            value='Like New'
+            checked={select === 'Like New'}
             onChange={handleChange}
           />
           <Form.Field
             control={Radio}
             label='Good'
-            value='good'
-            checked={select==='good'}
+            value='Good'
+            checked={select==='Good'}
             onChange={handleChange}
           />
           <Form.Field
             control={Radio}
             label='Decent'
-            value='decent'
-            checked={select === 'decent'}
+            value='Decent'
+            checked={select === 'Decent'}
             onChange={handleChange}
           />
             <Form.Field
             control={Radio}
             label='Sub-Par'
-            value='subpar'
-            checked={select === 'subpar'}
+            value='Sub-par'
+            checked={select === 'Sub-par'}
             onChange={handleChange}
           />
           <Form.Field
             control={Radio}
             label='Bad'
-            value='bad'
-            checked={select === 'bad'}
+            value='Bad'
+            checked={select === 'Bad'}
             onChange={handleChange}
           />
         </Form.Group>

@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import ReactShowMoreText from 'react-show-more-text'
 import { Button } from 'semantic-ui-react'
+import swal from 'sweetalert'
 
 function BigMarketCard() {
     const [detail, setDetail]=useState(false)
     const game = useLocation().state
     const navigate = useNavigate()
-    console.log(game)
-   
     const detailClick = ()=>{
         setDetail(!detail)
     }
@@ -24,7 +23,11 @@ function BigMarketCard() {
         })
         .then(r=>{
             if(r.ok){
-                r.json().then(navigate('/cart'))
+                r.json().then(swal("Added to cart"),
+                    navigate('/cart'))
+            }
+            else{
+                r.json().then(data=> swal(data.errors[0]))
             }
         })
     }

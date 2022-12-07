@@ -181,6 +181,7 @@ padding: 20px;
 }
 .miniMarketImg img{
   width: 100%;
+  height: 100%;
 }
 .detailsBtn{
   margin-top: 20px;
@@ -196,4 +197,32 @@ padding: 20px;
   grid-row-start: 3;
   grid-column: 2;
   text-align: left;
+}
+.cartCard{
+  background-color: #4f3f55;
+  width: 50vw;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto auto;
+}
+.cartTitle{
+  grid-row: 1;
+}
+.cartImage{
+  width: 16rem;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+.cartCondition{
+  grid-row: 2;
+  grid-column: 2;
+}
+.cartCost{
+  grid-row: 2;
+}
+.cartBtn{
+  grid-row: 3;
+  grid-column: 2;
+  height:40px
 }

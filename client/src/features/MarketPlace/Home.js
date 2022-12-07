@@ -41,8 +41,9 @@ const handleSubmit= (e)=>{
         }
          </Grid>
           <h2> Free (shipping sometimes required):</h2>
+          <Grid>
           {offer.map(game=><MiniMarketCard {...game} key={game.id}/>)}
-          
+          </Grid>
           </div>
   )
 }
