@@ -63,8 +63,21 @@ margin-right: auto;
   width: 100%;
 }
 .fullGame{
-  display: inline-flex;
+  display: grid;
+  grid-template-columns:50vw auto;
+  grid-template-rows: auto repeat(3)
 }
+.addToCart{
+  grid-column-start: 2;
+  grid-row: 2;
+  width: 50%;
+}
+
+.listingDetails{
+  grid-row: 4;
+  grid-column: 2;
+} 
+
 .gameName{
   font-size: 5rem;
   padding-left: 50px;
@@ -74,6 +87,8 @@ margin-right: auto;
   padding-left: 15px;
   max-width: 40vw;
   max-height: 80vh;
+  grid-row-start: 1;
+  grid-row-end: 6;
 }
 #listCard {
   margin-left: 20vw;
@@ -168,6 +183,7 @@ padding: 20px;
   width: 100%;
 }
 .detailsBtn{
+  margin-top: 20px;
   background: none!important;
   border: none;
   padding: 0!important;
@@ -177,4 +193,7 @@ padding: 20px;
   color: rgb(230, 118, 242);
   text-decoration: underline;
   cursor: pointer;
+  grid-row-start: 3;
+  grid-column: 2;
+  text-align: left;
 }

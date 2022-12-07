@@ -3,30 +3,26 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 // async actions
-export const fetchWishlist = createAsyncThunk("wishlist/fetchwishlist", () => {
+export const fetchCart = createAsyncThunk("cart/fetchcart", () => {
   // return a Promise containing the data we want
-  return fetch("/wishlists")
+  return fetch("/carts")
     .then((response) => response.json())
     .then((data) => data);
 });
 
-
-// sync actions added for demo purposes
-
-
 // Reducer
 const initialState = {
-  entities: [], // array of wishlisted games
+  entities: [], // array of games in a user's cart
 };
 
-const wishlistSlice = createSlice({
-  name: "wishlist",
+const cartSlice = createSlice({
+  name: "cart",
   initialState,
   reducers:{
-    wishlistAdded(state,action){
+    cartAdded(state,action){
       state.entities.push(action.payload)
     },
-    wishlistRemoved(state,action){
+    cartRemoved(state,action){
         const id = action.payload.id
         const list = state.entities.filter(item=> item.id!==id)
        state.entities = list
@@ -34,9 +30,9 @@ const wishlistSlice = createSlice({
     }
   },
     extraReducers: {
-      [fetchWishlist.fulfilled](state,action){
+      [fetchCart.fulfilled](state,action){
         state.entities = action.payload;
       },
     },
 })
-export default wishlistSlice.reducer
+export default cartSlice.reducer

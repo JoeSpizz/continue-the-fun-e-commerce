@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :carts
   resources :marketplace_items
   resources :wishlists
   resources :boardgames,

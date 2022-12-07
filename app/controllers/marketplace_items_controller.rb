@@ -1,6 +1,6 @@
 class MarketplaceItemsController < ApplicationController
     def index 
-        items = MarketplaceItem.all 
+        items = MarketplaceItem.all
         render json: items, status: :ok
     end
     def create 

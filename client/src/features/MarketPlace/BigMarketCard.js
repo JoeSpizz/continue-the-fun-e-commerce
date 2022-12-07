@@ -1,15 +1,32 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import ReactShowMoreText from 'react-show-more-text'
 import { Button } from 'semantic-ui-react'
 
 function BigMarketCard() {
     const [detail, setDetail]=useState(false)
     const game = useLocation().state
+    const navigate = useNavigate()
     console.log(game)
    
     const detailClick = ()=>{
         setDetail(!detail)
+    }
+    const addToCart = ()=>{
+        fetch('/carts',{
+            method: "POST",
+            headers: {
+                "Content-type" : "Application/json"
+            },
+            body: JSON.stringify({
+                marketplace_item_id : game.id
+            })
+        })
+        .then(r=>{
+            if(r.ok){
+                r.json().then(navigate('/cart'))
+            }
+        })
     }
   return (
     <div>
@@ -17,15 +34,17 @@ function BigMarketCard() {
            <h1 className="gameName" >{game.title}</h1>
         <div className='fullGame'>
         <img src={game.boardgame.image_url} alt={game.title}/>
-        
-         <ul >
+         <ul className='listingPrimary'>
              <li>Condition: {game.condition}{game.condition_detail ? <p>Details: {game.condition_detail}</p> : null}</li>
              
         {game.price? <li>{game.user.username} is selling this game for ${game.price}</li> : null}
-        <li>Players: {game.boardgame.min_players}-{game.boardgame.max_players}</li>
-        <button className='detailsBtn' onClick={detailClick}>{detail? "Hide Details..." : "Game Details..."}</button>
-        { detail ? 
-        <React.Fragment>
+       
+    </ul>
+    <Button color="violet" className='addToCart' onClick={addToCart}> Add to Cart</Button>
+    <button className='detailsBtn' onClick={detailClick}>{detail? "Hide Details..." : "Game Details..."}</button>
+    { detail ? 
+        <ul className='listingDetails'>
+            <li>Players: {game.boardgame.min_players}-{game.boardgame.max_players}</li>
         <li>Typical minimum game length: {game.boardgame.min_playtime} minutes</li>
         <li > Description:
              <ReactShowMoreText 
@@ -38,11 +57,9 @@ function BigMarketCard() {
                  truncatedEndingComponent={"... "}
                  ><p   dangerouslySetInnerHTML={{__html: game.boardgame.description}}></p></ReactShowMoreText>
              </li>
-             </React.Fragment>
+             </ul>
              : null
 }
-    </ul>
-    <Button basic color="violet"> Add to Cart</Button>
 
     </div>
     </div>

@@ -1,11 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dropdown, Icon, Menu } from 'semantic-ui-react'
 
 
 function UserNav({ user, logout}) {
 
-// const navigate = useNavigate()
+    const cartTest = useSelector(state=>state.cart.entities)
+    console.log(cartTest.length)
    
 
   return (
@@ -28,8 +30,8 @@ function UserNav({ user, logout}) {
                     </Dropdown.Item> : null }
                 </Dropdown.Menu>
             </Dropdown>
-            <Menu.Item floated="right">
-                <Icon name="shopping cart"/>
+            <Menu.Item floated="right" as={Link} to="/cart">
+                {cartTest.length>0 ? <Icon name="cart plus"/>:<Icon name="shopping cart"/>}
                 </Menu.Item>
         </Menu>
     </div>
