@@ -1,5 +1,5 @@
 class CartSerializer < ActiveModel::Serializer
   attributes :id
-  has_one :user
+  belongs_to :user, through: :marketplace_items, source: :user
   has_one :marketplace_item
 end

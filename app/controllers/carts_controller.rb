@@ -3,6 +3,7 @@ class CartsController < ApplicationController
         user = @current_user 
         cart = user.carts
         render json: cart, status: :ok
+
     end
 
     def create 

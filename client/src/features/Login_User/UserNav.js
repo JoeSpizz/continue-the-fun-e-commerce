@@ -1,13 +1,21 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Dropdown, Icon, Menu } from 'semantic-ui-react'
+import swal from 'sweetalert'
 
 
 function UserNav({ user, logout}) {
-
+const navigate = useNavigate()
     const cartTest = useSelector(state=>state.cart.entities)
-   
+    const logoutStepOne = ()=>{
+        fetch("/logout", { method: "DELETE" }).then((r) => {
+            if (r.ok) {
+              navigate("/")
+              swal("You have been logged out")
+              logout()
+            }
+          });}
 
   return (
     <div >
@@ -24,7 +32,7 @@ function UserNav({ user, logout}) {
                     <Dropdown.Item as={Link} to="/gamecenter">
                         Game Center
                     </Dropdown.Item>
-                    {user ? <Dropdown.Item onClick={logout}>
+                    {user ? <Dropdown.Item onClick={logoutStepOne}>
                         Logout
                     </Dropdown.Item> : null }
                 </Dropdown.Menu>

@@ -3,8 +3,9 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import ReactShowMoreText from 'react-show-more-text'
 import { Button } from 'semantic-ui-react'
 import swal from 'sweetalert'
+import Login from '../Login_User/Login'
 
-function BigMarketCard() {
+function BigMarketCard({user, login}) {
     const [detail, setDetail]=useState(false)
     const game = useLocation().state
     const navigate = useNavigate()
@@ -12,6 +13,10 @@ function BigMarketCard() {
         setDetail(!detail)
     }
     const addToCart = ()=>{
+        if (!user || Object.keys(user).length===0) {
+           navigate('/login')
+        }
+        else{
         fetch('/carts',{
             method: "POST",
             headers: {
@@ -27,10 +32,10 @@ function BigMarketCard() {
                     navigate('/cart'))
             }
             else{
-                r.json().then(data=> swal(data.errors[0]))
+                r.json().then(data=> alert(data))
             }
         })
-    }
+    }}
   return (
     <div>
          <a href="/">Back to Marketplace</a>

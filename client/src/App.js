@@ -23,6 +23,7 @@ import MarketplaceSearch from './features/MarketPlace/MarketplaceSearch';
 import BigMarketCard from './features/MarketPlace/BigMarketCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCart } from './features/MarketPlace/cartSlice';
+import Checkout from './features/MarketPlace/Checkout';
 
 function App() {
   // Handles logic for Logging in/setting user. 
@@ -50,15 +51,10 @@ function App() {
     swal(user.username + " has been logged in")
   }
   const logout = ()=>{
-      fetch("/logout", { method: "DELETE" }).then((r) => {
-          if (r.ok) {
             setUser(null);
             setUserData(null)
-            swal("You have been logged out")
           }
-        });
-  
-  }
+        
 
   return (
     <div className="App">
@@ -77,7 +73,8 @@ function App() {
       <Route path ={`offer/:id`} element={<PotentialListing/>}/>
       <Route path ={`sell/:id`} element={<PotentialListing/>}/>
       <Route path ="/marketplace_search" element={<MarketplaceSearch/>}/>
-      <Route path ="/BigMarketCard" element={<BigMarketCard/>}/>
+      <Route path ="/BigMarketCard" element={<BigMarketCard user={user} login={login}/>}/>
+      <Route path="/checkout" element={<Checkout user={userData}/>}/>
     </Routes>
     </BrowserRouter>
     </div>

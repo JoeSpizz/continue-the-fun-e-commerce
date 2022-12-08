@@ -6,6 +6,9 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    def index 
+    end
+
     def show 
         user = @current_user 
         render json: user, status: :ok 
@@ -13,7 +16,7 @@ class UsersController < ApplicationController
 
     private 
     def user_params
-        params.permit(:user, :username, :password, :password_confirmation, :email, :address)
+        params.permit(:user, :username, :password, :password_confirmation, :email, :address, :zipcode)
     end
 
 end
