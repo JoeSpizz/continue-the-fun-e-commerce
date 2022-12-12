@@ -25,7 +25,7 @@ function CartItemCard({game}) {
 
         })
     }
-console.log(game)
+// console.log(game)
   return (
     <div className='cartCard'>
         <img src={game.marketplace_item.image_url} alt="cover" className='cartImage'/>

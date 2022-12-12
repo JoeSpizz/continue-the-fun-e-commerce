@@ -8,6 +8,9 @@ const navigate = useNavigate()
   const listGame = ()=>{
     navigate('/listGame')
   }
+  const editListing= ()=>{
+    navigate('/my_listings')
+  }
 
   // if (!user || Object.keys(user).length===0) return <Login login={login}/>
   return (
@@ -18,7 +21,13 @@ const navigate = useNavigate()
       <Card id="listCard" >
           <Card.Header id="listCardHead">Ready to Continue the Fun?</Card.Header>
           <Card.Content id="listCardContent">Whether you decide to <strong>sell</   strong> your game or offer it for <em>free</em>, we make it easy for your old games to have a new life!</Card.Content>
-          <Button onClick={listGame}>List a Game</Button>
+          <Button color="linkedin" onClick={listGame}>List a Game</Button>
+      </Card>
+
+      <Card id="listCard2" >
+          <Card.Header id="listCardHead">See Your Listings</Card.Header>
+          <Card.Content id="listCardContent">Need to update some details? You've found the right spot!</Card.Content>
+          <Button color="linkedin" onClick={editListing}>Check Listings</Button>
       </Card>
 
       <div id="listedGames">

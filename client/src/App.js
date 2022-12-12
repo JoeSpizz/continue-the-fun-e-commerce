@@ -24,6 +24,8 @@ import BigMarketCard from './features/MarketPlace/BigMarketCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCart } from './features/MarketPlace/cartSlice';
 import Checkout from './features/MarketPlace/Checkout';
+import MyListings from './features/MarketPlace/MyListings';
+import EditListing from './features/MarketPlace/EditListing';
 
 function App() {
   // Handles logic for Logging in/setting user. 
@@ -39,7 +41,7 @@ function App() {
           setUserData(data)
           setUser(data.username)})}})
   }, [])
-
+// console.log(userData)
 
   useEffect(()=>{
     dispatch(fetchCart())
@@ -75,6 +77,8 @@ function App() {
       <Route path ="/marketplace_search" element={<MarketplaceSearch/>}/>
       <Route path ="/BigMarketCard" element={<BigMarketCard user={user} login={login}/>}/>
       <Route path="/checkout" element={<Checkout user={userData}/>}/>
+      <Route path="/my_listings" element={<MyListings user={user} login={login}/>}/>
+      <Route path="/my_listings/:id" element={<EditListing />}/>
     </Routes>
     </BrowserRouter>
     </div>

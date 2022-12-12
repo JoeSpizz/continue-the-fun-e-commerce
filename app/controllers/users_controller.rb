@@ -6,9 +6,6 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
-    def index 
-    end
-
     def show 
         user = @current_user 
         render json: user, status: :ok 

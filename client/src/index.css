@@ -57,7 +57,7 @@ margin-right: auto;
 }
 #gamecenter{
   background-size: cover;
-  height: 100vh; 
+  height: 110vh; 
 }
 #gamecenter img{
   width: 100%;
@@ -91,9 +91,13 @@ margin-right: auto;
   grid-row-end: 6;
 }
 #listCard {
-  margin-left: 20vw;
-  margin-top: 10vh;
+  margin-left: 15vw;
   background-color: #CD6AF0;
+  width: 400px;
+}
+#listCard2 {
+  margin-left: 50vw;
+  background-color: #B413EC;
   width: 400px;
 }
 #listCardHead{
@@ -170,6 +174,7 @@ padding: 20px;
   width: 17rem;
   background-color: #4f2b5e;
   margin-left: 20px;
+  margin-top: 15px;
   font-size: 1.5rem;
 }
 .miniMarketImg{
@@ -251,8 +256,70 @@ padding: 20px;
   margin-left: 3rem;
 grid-row: 2;
 }
-.checkout{
+#checkoutHead{
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.checkoutBtn{
   position: fixed;
   left: 45rem;
   top: 10rem;
+}
+.checkout{
+  margin-left: 15px;
+  display: grid;
+  grid-template-columns: 50vw 100px;
+  grid-template-rows: auto auto auto auto;
+}
+.checkoutComponent{
+  grid-row-start: 2;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  border-bottom: #4f2b5e solid 3px;
+  border-right: #4f2b5e solid 3px;
+}
+.checkoutComponent2{
+  grid-row-start: 3;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  border-bottom: #4f2b5e solid 3px;
+  border-right: #4f2b5e solid 3px;
+}
+.checkoutCards{
+  grid-row:4
+}
+.checkoutTotal{
+position: fixed;
+left: 45rem;
+top: 10rem;
+color: #B413EC;
+}
+#expDate{
+  max-width: 10rem
+}
+#listingsTitle{
+  text-align: center;
+  font-size: 4rem;
+}
+.myMiniListing{
+  margin-left: 100px;
+  padding-left: 10px;
+margin-top: 16px;
+  border-bottom: #CD6AF0 1px solid;
+  border-right:#CD6AF0 1px solid;
+  width: 400px;
+  cursor: pointer;
+}
+#editHeader{
+text-align: center;
+font-size: 4rem;
+}
+.editListing{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.editListing img{
+  width: 25rem;
+  max-height: 25rem;
 }

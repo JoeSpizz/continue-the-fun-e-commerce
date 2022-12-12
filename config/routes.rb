@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   get '/me', to: "users#show"
   get '/offer/:id', to: "boardgames#show"
   get '/sell/:id', to: "boardgames#show"
+  get '/mylistings', to: "marketplace_items#all"
+  get '/purchase', to: "carts#wipe"
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

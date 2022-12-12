@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Form, Input, Popup, Radio } from 'semantic-ui-react'
+import { Button, Form, Input, Popup, Radio, TextArea } from 'semantic-ui-react'
 import swal from 'sweetalert'
 
 function PotentialListing() {
@@ -56,8 +56,9 @@ function PotentialListing() {
             navigate('/gamecenter')
         }
         else{
-            r.json().then(data=>swal(data.errors))
-        }})
+            r.json().then(data=>swal(data))
+        }
+    })
     }
     
     const listingChange = (e)=>{
@@ -148,8 +149,8 @@ function PotentialListing() {
             onChange={handleChange}
           />
         </Form.Group>
-            <Form.Field
-                control={Input}
+            <Form.TextArea
+                control={TextArea}
                 label="Condition Detail" inline
                 name="condition_detail"
                 value={`${listing.condition_detail}`}

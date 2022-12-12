@@ -28,7 +28,7 @@ const dispatch = useDispatch()
       <div className='cartItemsContainer'>
       {list.length>0 ? list.map(game=> <CartItemCard game={game} key={game.id}/>): null}
       </div>
-      <div className='checkout'>
+      <div className='checkoutBtn'>
         <Button color='linkedin' circular onClick={checkout}>Start Checkout</Button>
         {list.length>0 ? <h2>Cart Total: ${list.reduce((acc, obj)=>acc + obj.marketplace_item.price, 0)}</h2>: null}
         <p>(before shipping costs)</p>

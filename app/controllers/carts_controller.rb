@@ -22,4 +22,9 @@ class CartsController < ApplicationController
         item.destroy
         head :no_content
     end
+    def wipe
+        cart = Cart.all.where(user_id: session[:user_id])
+        cart.destroy_all
+        head :no_content
+    end
 end

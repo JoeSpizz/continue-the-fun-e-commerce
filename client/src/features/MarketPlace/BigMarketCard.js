@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import ReactShowMoreText from 'react-show-more-text'
 import { Button } from 'semantic-ui-react'
 import swal from 'sweetalert'
-import Login from '../Login_User/Login'
 
 function BigMarketCard({user, login}) {
     const [detail, setDetail]=useState(false)

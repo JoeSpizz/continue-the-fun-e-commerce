@@ -24,7 +24,6 @@ const handleSubmit= (e)=>{
   e.preventDefault()
   navigate('/marketplace_search', {state: search})
 }
-console.log(offer)
   return (
     <div>
       <h1>Find Your Next Fun</h1>
