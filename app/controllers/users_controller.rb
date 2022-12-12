@@ -11,6 +11,14 @@ class UsersController < ApplicationController
         render json: user, status: :ok 
     end
 
+    def update 
+        user = @current_user
+        byebug
+        user.update!(username: params[:username], address: params[:street], zipcode: params[:zipcode], email: params[:email])
+        user.save
+        render json: user, status: :accepted
+    end
+
     private 
     def user_params
         params.permit(:user, :username, :password, :password_confirmation, :email, :address, :zipcode)

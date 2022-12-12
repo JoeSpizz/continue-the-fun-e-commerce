@@ -50,6 +50,8 @@ const billingChange = (e)=>{
 const radioSelect = (e, {value})=>{
     setSelect(value)
 } 
+
+
 const placeOrder = ()=>{
     swal("Thank you for trying out the Continue the Fun app. For the sake of demo purposes the selected games will be removed from your cart and re-added to the Marketplace.")
     fetch('/purchase')

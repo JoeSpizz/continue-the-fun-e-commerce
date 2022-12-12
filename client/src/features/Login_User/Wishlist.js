@@ -16,8 +16,7 @@ let navigate = useNavigate()
   useEffect(()=>{
     dispatch(fetchWishlist())
   }, [dispatch])
-//  const name = wishTest
-  // console.log(name)
+
 
   function handleType(e){
     setSearch(e.target.value)
