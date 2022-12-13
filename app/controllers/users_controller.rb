@@ -14,10 +14,15 @@ class UsersController < ApplicationController
 
     def update 
         user = @current_user
-        byebug
         user.update!(username: params[:username], address: params[:street], zipcode: params[:zipcode], email: params[:email])
         user.save
         render json: user, status: :accepted
+    end
+
+    def destroy 
+        user = @current_user 
+        user.destroy 
+        head :no_content
     end
 
     private 

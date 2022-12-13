@@ -3,7 +3,7 @@ class User < ApplicationRecord
     has_one :wishlist
     has_many :boardgames, through: :wishlist
     has_many :carts
-    has_many :marketplace_items, through: :carts
+    has_many :marketplace_items
 
     validates :username, presence: true
     validates :username, uniqueness: true

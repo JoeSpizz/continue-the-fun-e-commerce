@@ -56,16 +56,43 @@ const submitUpdate =()=>{
   setEditEmail(false)
   setEditName(false)
 }
+const deleteProfile = ()=>{
+  swal({
+      title: "Delete Profile",
+      text: "Deleting a profile is permanent and will immediately remove any listings you've put up on the marketplace. This CANNOT be undone.",
+      icon: "warning",
+      buttons:["Cancel", "Delete Forever"]
+    })
+    .then((whichRoute) => {
+      if (whichRoute) {
+        swal("Profile Deleted");
+        fetch(`/users/${user.id}`,{
+          method: "DELETE"
+        })
+   
+      } else {
+        swal("Cancelled");
+  
+      }
+    })
+}
   
 if (!user || Object.keys(user).length===0) return <Login login={login}/>
   return (
     <div id="profile">
       <h1>{profile.username}'s Profile</h1>
-     
-        {editName ? <Form><Form.Group><Form.Field control={Input} type="text" name="username" value={profile.username} onChange={updateProfile}/> <Button color="violet" onClick={submitUpdate}>Update</Button></Form.Group> </Form> :<p className='profile section'>Username: {profile.username} <Button color='violet' onClick={editNameStatus}>Edit</Button></p>}
-        {editAddress ?<Form><Form.Group><Form.Field control={Input} type="text" name="address" value={profile.street} onChange={updateProfile}/><Form.Field control={Input} type="number" placeholder="zipcode" name="zipcode" value={profile.zipcode} onChange={updateProfile}/> <Button color="violet" onClick={submitUpdate}>Update</Button></Form.Group> </Form> :<p>Address: {profile.street} {profile.zipcode} <Button color='violet' onClick={editAddressStatus}>Edit</Button></p> }
-        { editEmail?<Form><Form.Group><Form.Field control={Input} type="email" name="email" value={profile.email} onChange={updateProfile}/> <Button color="violet" onClick={submitUpdate}>Update</Button></Form.Group> </Form>:<p>Email: {profile.email} <Button color='violet' onClick={editEmailStatus}>Edit</Button></p>}
-      
+      <div id="FormContainer">
+        {editName ? <Form className='profileSection'><Form.Group>
+          <Form.Field control={Input} type="text" name="username" value={profile.username} onChange={updateProfile}/> 
+          <Button size='tiny' color="violet" onClick={submitUpdate}>Update</Button></Form.Group> </Form> 
+          :<p className='profileSection'>Username: {profile.username} 
+          <Button color='violet' size='tiny' onClick={editNameStatus}>Edit</Button></p>}
+
+        {editAddress ?<Form><Form.Group><Form.Field control={Input} type="text" name="address" value={profile.street} onChange={updateProfile}/><Form.Field control={Input} type="number" placeholder="zipcode" name="zipcode" value={profile.zipcode} onChange={updateProfile}/> <Button size='tiny' color="violet" onClick={submitUpdate}>Update</Button></Form.Group> </Form> :<p>Address: {profile.street} {profile.zipcode} <Button  size='tiny' color='violet' onClick={editAddressStatus}>Edit</Button></p> }
+
+        { editEmail?<Form><Form.Group><Form.Field control={Input} type="email" name="email" value={profile.email} onChange={updateProfile}/> <Button size='tiny' color="violet" onClick={submitUpdate}>Update</Button></Form.Group> </Form>:<p>Email: {profile.email} <Button size='tiny' color='violet' onClick={editEmailStatus}>Edit</Button></p>}
+        </div>
+        <button className='detailsBtn' id="deleteProfile" onClick={deleteProfile}> Delete Profile</button>
      
       </div>
   )

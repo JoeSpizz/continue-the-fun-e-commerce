@@ -323,3 +323,16 @@ font-size: 4rem;
   width: 25rem;
   max-height: 25rem;
 }
+#profile{
+  text-align: center;
+}
+#FormContainer{
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+}
+#deleteProfile{
+  position: absolute;
+  right: 0px;
+  top: 2.5rem;
+}

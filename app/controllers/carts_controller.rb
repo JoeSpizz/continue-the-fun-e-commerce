@@ -24,6 +24,8 @@ class CartsController < ApplicationController
     end
     def wipe
         cart = Cart.all.where(user_id: session[:user_id])
+        cart.each{|game| game.marketplace_item.available=true}
+        cart.each{|game| game.marketplace_item.save}
         cart.destroy_all
         head :no_content
     end
