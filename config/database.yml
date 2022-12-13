@@ -82,3 +82,6 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
+   database: react_rails_api_project_template_production1
+  username: react_rails_api_project_template1
+  password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
