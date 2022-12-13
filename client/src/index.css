@@ -1,3 +1,4 @@
+
 #body{
   background-color:  rgb(48, 45, 45);
   height: 100vh;
@@ -32,11 +33,21 @@ code {
 .login{
   color: white;
 }
+.homeHeader{
+  text-align: center;
+  margin-bottom: 15px;
+}
+#homeSearch{
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+}
 .gameCardWish{
   color:white;
   flex-wrap: wrap;
   max-width: 15rem;
   margin-left: 15px;
+  cursor: pointer;
 }
 .gameCardWish li{
   list-style-type: none;
@@ -121,6 +132,7 @@ margin-right: auto;
   width: 100%;
   display: inline-flex;
   position: relative;
+  cursor: pointer;
 }
 .miniCard img{
   width: 150px;
@@ -176,6 +188,7 @@ padding: 20px;
   margin-left: 20px;
   margin-top: 15px;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 .miniMarketImg{
   display: flex;
@@ -333,6 +346,13 @@ font-size: 4rem;
 }
 #deleteProfile{
   position: absolute;
-  right: 0px;
+  right: 10px;
   top: 2.5rem;
+}
+.sliderContainer{
+  text-align: center;
+  background-color: #CD6AF0;
+  width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
 }

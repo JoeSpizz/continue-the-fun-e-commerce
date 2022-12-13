@@ -67,6 +67,7 @@ const placeOrder = ()=>{
     })
     // navigate('/')
 }
+
   return (
     <div className='checkout'>
         <h2 id="checkoutHead">Checkout <em>{list.length} item(s)</em></h2>
@@ -144,7 +145,7 @@ const placeOrder = ()=>{
         <div className='checkoutTotal'>
         <h2>Items Subtotal: ${total}</h2>
         <p> Shipping: {select} </p>
-        <h1>Order Total: ${total + parseFloat(select)}</h1>
+        <h1>Order Total: ${(total + (parseFloat(select))).toFixed(2)}</h1>
         <Button color="violet" circular onClick={placeOrder}>Place Order</Button>
         </div>
         </div>

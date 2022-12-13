@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Form, Grid, Input } from 'semantic-ui-react'
 import MiniMarketCard from './MiniMarketCard'
+import Slider from "react-slick";
 
 function Home() {
   const [market, setMarket] = useState([])
@@ -16,6 +17,16 @@ function Home() {
   }, [])
   let offer = market.filter(game=>game.price === null)
   let sale = market.filter(game=> game.price!== null)
+  let settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplaySpeed: 3500,
+    autoplay: true,
+    arrows: true
+  };
 
 const handleType = (e)=>{
   setSearch(e.target.value)
@@ -24,23 +35,37 @@ const handleSubmit= (e)=>{
   e.preventDefault()
   navigate('/marketplace_search', {state: search})
 }
+
+let carousel = market.sort(() => .5 - Math.random()).slice(0,5)
   return (
     <div>
-      <h1>Find Your Next Fun</h1>
+      <div className='homeHeader'>
+      <h1>It is time to <strong> Continue the Fun</strong></h1>
       <Form inverted onSubmit={handleSubmit}>
-        <Form.Group>
-        <Form.Field onChange={handleType} type="text" control={Input} placeholder="Search for Game" icon="searchengin"/>
+        <Form.Field id="homeSearch" onChange={handleType} type="text" control={Input} placeholder="Search for Game" icon="searchengin"/>
         <Button type="submit">Find</Button>
-        </Form.Group>
       </Form>
+      </div>
+    <div className='sliderContainer'>
+      <Slider {...settings}>
+     {carousel.map(game=>{
+       return(
+         <div>
+           <MiniMarketCard {...game} key={game.id}/>
+         </div>
+       )
+     })}
+    </Slider>
+    </div>
+    <br></br>
 
-        <h2> For Sale:</h2>
+        <h3> For Sale:</h3>
         <Grid>
           {
         sale.map(game=><MiniMarketCard {...game} key={game.id} />)
         }
          </Grid>
-          <h2> Free (shipping sometimes required):</h2>
+          <h3> Free (shipping equired):</h3>
           <Grid>
           {offer.map(game=><MiniMarketCard {...game} key={game.id}/>)}
           </Grid>
