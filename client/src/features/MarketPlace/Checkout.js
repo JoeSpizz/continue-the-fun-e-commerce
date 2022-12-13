@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { Button, Form, Input, Popup, Radio } from 'semantic-ui-react'
 import swal from 'sweetalert'
 import CartItemCard from './CartItemCard'
@@ -12,6 +13,7 @@ function Checkout({user}) {
     const [billAddress, setBillAddress] = useState({})
     const [select, setSelect] = useState("7.47")
     const dispatch = useDispatch()
+    const navigate = useNavigate()
   useEffect(()=>{
     dispatch(fetchCart())
   }, [dispatch])
@@ -55,6 +57,14 @@ const radioSelect = (e, {value})=>{
 const placeOrder = ()=>{
     swal("Thank you for trying out the Continue the Fun app. For the sake of demo purposes the selected games will be removed from your cart and re-added to the Marketplace.")
     fetch('/purchase')
+    .then(r=>{
+        if(r.ok){
+            navigate('/')
+        }
+        else{
+            r.json().then(data=>console.log(data))
+        }
+    })
     // navigate('/')
 }
   return (

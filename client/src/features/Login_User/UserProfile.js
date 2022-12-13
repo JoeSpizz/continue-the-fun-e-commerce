@@ -37,7 +37,6 @@ const updateProfile = (e)=>{
     [e.target.name] : e.target.value
   })
 }
-console.log(profile)
 const submitUpdate =()=>{
  
   fetch(`/users/${user.id}`,{

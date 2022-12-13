@@ -32,7 +32,7 @@ function attemptLogin(e){
         r.json().then(data=>login(data))
         }
         else{
-            r.json().then(data=>alert(data.errors))
+            r.json().then(data=>swal("Username or Password incorrect. Do you need to create a new user?"))
         }})
 }
 // along with ternary in the Return this sets visiblity of login vs create user form
@@ -64,7 +64,7 @@ function createUser(e){
                 setCreate(!create)
                 }
                 else{
-                    r.json().then(data=>alert(data.errors))
+                    r.json().then(data=>swal(data.errors))
                 }
         })
     }

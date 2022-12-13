@@ -83,6 +83,7 @@ return (
             name="price"
             input="number"
             label="Price $"
+            placeholder="Leave Blank For Free"
             value={`${(listing.price)}`}
             onChange={detailUpdate}
         />
