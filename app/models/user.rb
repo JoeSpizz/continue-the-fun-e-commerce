@@ -2,8 +2,8 @@ class User < ApplicationRecord
     has_secure_password
     has_one :wishlist
     has_many :boardgames, through: :wishlist
-    has_many :carts
-    has_many :marketplace_items
+    has_many :carts, dependent: :destroy
+    has_many :marketplace_items, dependent: :destroy
 
     validates :username, presence: true
     validates :username, uniqueness: true

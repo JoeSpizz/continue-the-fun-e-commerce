@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Button, Form, Input } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import Login from './Login';
 
 function UserProfile({user, login}) {
-  
+  const navigate = useNavigate()
   const [editName, setEditName]= useState(false)
   const [editAddress, setEditAddress]= useState(false)
   const [editEmail, setEditEmail]= useState(false)
@@ -68,6 +69,12 @@ const deleteProfile = ()=>{
         swal("Profile Deleted");
         fetch(`/users/${user.id}`,{
           method: "DELETE"
+        })
+        .then(r=>{
+          if(r.ok){
+            navigate('/')
+          }
+
         })
    
       } else {

@@ -11,6 +11,9 @@ class MarketplaceItemsController < ApplicationController
     def create 
         user=@current_user
         item = MarketplaceItem.create!(title: params[:title], price: params[:price], user_id: session[:user_id], boardgame_id: params[:boardgame_id], condition: params[:condition], condition_detail: params[:condition_detail], available: true, image_url: params[:image], seller: user.username)
+        mailTest= Wishlist.all.where(boardgame_id: item.boardgame_id)
+        users = mailTest.map{|item| item.user}
+        users.map{|user| UserMailer.with(user: user, game: item).wishlist_item_added.deliver_now}
         render json: user, status: :created
     end
 
