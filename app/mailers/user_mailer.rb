@@ -1,5 +1,11 @@
 class UserMailer < ApplicationMailer
-    default from: 'notifications@example.com'
+  
+    
+    def welcome
+        @greeting = "Hi"
+        mail(to: "to@example.org", subject: @greeting)
+      end
+
 
     def welcome_email
         @user = params[:user]

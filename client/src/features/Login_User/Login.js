@@ -70,7 +70,7 @@ function createUser(e){
     }
 
   return (
-    <div>
+    <div id="loginAll">
         {/* What follow is a ternary for the login vs create user form */}
         { create 
         ?
@@ -175,6 +175,7 @@ function createUser(e){
             color="green"
             />
         </Form>
+        <br></br>
         <Button color="linkedin" onClick={toggleCreateUserForm}>Create New User</Button>
         </div>}
     </div>

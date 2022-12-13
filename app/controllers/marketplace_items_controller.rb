@@ -14,7 +14,7 @@ class MarketplaceItemsController < ApplicationController
         mailTest= Wishlist.all.where(boardgame_id: item.boardgame_id)
         users = mailTest.map{|item| item.user}
         users.map{|user| UserMailer.with(user: user, game: item).wishlist_item_added.deliver_now}
-        render json: user, status: :created
+        render json: item, status: :created
     end
 
     def show

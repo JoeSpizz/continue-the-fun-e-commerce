@@ -13,7 +13,7 @@ function BigMarketCard({user, login}) {
     }
     const addToCart = ()=>{
         if (!user || Object.keys(user).length===0) {
-           navigate('/login')
+           swal('Please log in first')
         }
         else{
         fetch('/carts',{
