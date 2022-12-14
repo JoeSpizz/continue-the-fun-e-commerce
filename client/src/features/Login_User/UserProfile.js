@@ -21,7 +21,7 @@ function UserProfile({user, login}) {
     zipcode : user.zipcode,
     email : user.email
   })
-  }, [user.username, user.address, user.zipcode, user.email])
+  }, [user])
 
 const editNameStatus=()=>{
   setEditName(!editName)

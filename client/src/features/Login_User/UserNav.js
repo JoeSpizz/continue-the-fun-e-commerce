@@ -32,9 +32,9 @@ const navigate = useNavigate()
                     <Dropdown.Item as={Link} to="/gamecenter">
                         Game Center
                     </Dropdown.Item>
-                    {user ? <Dropdown.Item onClick={logoutStepOne}>
+                    {!user || Object.keys(user).length===0 ? null : <Dropdown.Item onClick={logoutStepOne}>
                         Logout
-                    </Dropdown.Item> : null }
+                    </Dropdown.Item> }
                 </Dropdown.Menu>
             </Dropdown>
             <Menu.Item floated="right" as={Link} to="/cart">

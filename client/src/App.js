@@ -53,8 +53,8 @@ function App() {
     swal(user.username + " has been logged in")
   }
   const logout = ()=>{
-            setUser(null);
-            setUserData(null)
+            setUser([]);
+            setUserData([])
           }
         
 

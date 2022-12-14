@@ -15,7 +15,7 @@ function Wishlist({user,login}) {
 let navigate = useNavigate()
   useEffect(()=>{
     dispatch(fetchWishlist())
-  }, [dispatch])
+  }, [dispatch, user])
 
 
   function handleType(e){

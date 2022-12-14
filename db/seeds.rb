@@ -9,4 +9,17 @@
 
 # https://api.boardgameatlas.com/api/search?limit=100&skip=0&pretty=true&client_id=cXouSHFcOH
 # use this for seeding board games. You'll want to run multiple and up the skip by 100 each time to get full list. 
-MarketplaceItem.create(title: )
+
+# MarketplaceItem.create(title: "Risk", user_id: 1)
+
+# t.bigint "user_id"
+# t.bigint "boardgame_id"
+# t.integer "price"
+# t.string "title"
+# t.string "condition"
+# t.string "condition_detail"
+# t.boolean "available"
+# t.datetime "created_at", precision: 6, null: false
+# t.datetime "updated_at", precision: 6, null: false
+# t.string "image_url"
+# t.string "seller"
