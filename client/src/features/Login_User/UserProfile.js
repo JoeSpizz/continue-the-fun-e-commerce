@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Button, Form, Input } from 'semantic-ui-react';
+import { button, Form, Input } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import Login from './Login';
 
@@ -91,13 +91,13 @@ if (!user || Object.keys(user).length===0) return <Login login={login}/>
       <div id="FormContainer">
         {editName ? <Form className='profileSection'><Form.Group>
           <Form.Field control={Input} type="text" name="username" value={profile.username} onChange={updateProfile}/> 
-          <Button size='tiny' color="violet" onClick={submitUpdate}>Update</Button></Form.Group> </Form> 
+          <button className='profileBtn' onClick={submitUpdate}>Update</button></Form.Group> </Form> 
           :<p className='profileSection'>Username: {profile.username} 
-          <Button color='violet' size='tiny' onClick={editNameStatus}>Edit</Button></p>}
+          <button color='violet' className='profileBtn' onClick={editNameStatus}>Edit</button></p>}
 
-        {editAddress ?<Form><Form.Group><Form.Field control={Input} type="text" name="address" value={profile.street} onChange={updateProfile}/><Form.Field control={Input} type="number" placeholder="zipcode" name="zipcode" value={profile.zipcode} onChange={updateProfile}/> <Button size='tiny' color="violet" onClick={submitUpdate}>Update</Button></Form.Group> </Form> :<p>Address: {profile.street} {profile.zipcode} <Button  size='tiny' color='violet' onClick={editAddressStatus}>Edit</Button></p> }
+        {editAddress ?<Form><Form.Group><Form.Field control={Input} type="text" name="address" value={profile.street} onChange={updateProfile}/><Form.Field control={Input} type="number" placeholder="zipcode" name="zipcode" value={profile.zipcode} onChange={updateProfile}/> <button onClick={submitUpdate}>Update</button></Form.Group> </Form> :<p>Address: {profile.street}, {profile.zipcode} <button  className='profileBtn' color='violet' onClick={editAddressStatus}>Edit</button></p> }
 
-        { editEmail?<Form><Form.Group><Form.Field control={Input} type="email" name="email" value={profile.email} onChange={updateProfile}/> <Button size='tiny' color="violet" onClick={submitUpdate}>Update</Button></Form.Group> </Form>:<p>Email: {profile.email} <Button size='tiny' color='violet' onClick={editEmailStatus}>Edit</Button></p>}
+        { editEmail?<Form><Form.Group><Form.Field control={Input} type="email" name="email" value={profile.email} onChange={updateProfile}/> <button className='profileBtn' onClick={submitUpdate}>Update</button></Form.Group> </Form>:<p>Email: {profile.email} <button className='profileBtn' color='violet' onClick={editEmailStatus}>Edit</button></p>}
         </div>
         <button className='detailsBtn' id="deleteProfile" onClick={deleteProfile}> Delete Profile</button>
      

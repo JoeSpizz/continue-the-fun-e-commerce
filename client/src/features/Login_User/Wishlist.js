@@ -78,7 +78,6 @@ function cardClick(game){
   return (
     <div>
        <h3> Add a game, we'll notify you when it's available!</h3>
-       <p>Note: The "email a user" function is right now theoretical as I don't own a domain. It's in the code though! Check-out the <a href="https://github.com/JoeSpizz/continue-the-fun-e-commerce" target="blank" rel="noreferrer">Github</a></p>
       <Form inverted onSubmit={handleSubmit}>
         <Form.Group>
         <Form.Field onChange={handleType} type="text" control={Input} placeholder="Search for Game" icon="searchengin" value={search}/>

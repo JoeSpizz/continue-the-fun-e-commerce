@@ -50,7 +50,7 @@ let carousel = market.sort(() => .5 - Math.random()).slice(0,5)
       <Slider {...settings}>
      {carousel.map(game=>{
        return(
-         <div>
+         <div className='carousel'>
            <MiniMarketCard {...game} key={game.id}/>
          </div>
        )
@@ -65,7 +65,7 @@ let carousel = market.sort(() => .5 - Math.random()).slice(0,5)
         sale.map(game=><MiniMarketCard {...game} key={game.id} />)
         }
          </Grid>
-          <h3> Free (shipping equired):</h3>
+          <h3> Free (shipping required  ):</h3>
           <Grid>
           {offer.map(game=><MiniMarketCard {...game} key={game.id}/>)}
           </Grid>

@@ -43,6 +43,14 @@ code {
   text-align: center;
   margin-bottom: 15px;
 }
+.homeHeader h1{
+  font-size: 3rem;
+  color: #B413EC;
+}
+.profileBtn{
+  margin-left: 15px;
+}
+
 #homeSearch{
   max-width: 30rem;
   margin-left: auto;
