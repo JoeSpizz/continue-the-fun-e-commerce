@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Form, Grid, Input } from 'semantic-ui-react'
 import MiniMarketCard from './MiniMarketCard'
 import Slider from "react-slick";
+import CarouselCard from './CarouselCard';
+import MiniMarketCardOffer from './MiniMarketCardOffer';
 
 function Home() {
   const [market, setMarket] = useState([])
@@ -40,35 +42,39 @@ let carousel = market.sort(() => .5 - Math.random()).slice(0,5)
   return (
     <div>
       <div className='homeHeader'>
-      <h1>It is time to <strong> Continue the Fun</strong></h1>
-      <Form inverted onSubmit={handleSubmit}>
-        <Form.Field id="homeSearch" onChange={handleType} type="text" control={Input} placeholder="Search for Game" icon="searchengin"/>
-        <Button type="submit">Find</Button>
-      </Form>
-      </div>
+      <img src="https://res.cloudinary.com/doqo7su1s/image/upload/v1672766746/CTF_Logo_Light_otpioj.png" alt="Continue the Fun!"/>
+      
     <div className='sliderContainer'>
       <Slider {...settings}>
      {carousel.map(game=>{
        return(
          <div className='carousel'>
-           <MiniMarketCard {...game} key={game.id}/>
+           <CarouselCard {...game} key={game.id}/>
          </div>
        )
      })}
     </Slider>
     </div>
-    <br></br>
-
+    <Form inverted onSubmit={handleSubmit}>
+      <Form.Group className='homeSearch'>
+        <Form.Field onChange={handleType} type="text" control={Input} placeholder="Search for Game" icon="searchengin"/>
+        <Button type="submit">Find</Button>
+        </Form.Group>
+      </Form>
+      </div>
+      <div className='listedItems'>
         <h3> For Sale:</h3>
         <Grid>
           {
         sale.map(game=><MiniMarketCard {...game} key={game.id} />)
         }
          </Grid>
+         
           <h3> Free (shipping required  ):</h3>
           <Grid>
-          {offer.map(game=><MiniMarketCard {...game} key={game.id}/>)}
+          {offer.map(game=><MiniMarketCardOffer {...game} key={game.id}/>)}
           </Grid>
+          </div>
           </div>
   )
 }

@@ -27,8 +27,7 @@ code {
 }
 .menuItem{
   font-size: 1.5rem;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: bolder;
+  font-family: cursive;
 }
 #NavBar{
   height: 50px;
@@ -41,20 +40,32 @@ code {
 }
 .homeHeader{
   text-align: center;
-  margin-bottom: 15px;
+  padding: 17px;
 }
-.homeHeader h1{
-  font-size: 3rem;
+.homeHeader img{
+ height: 15rem;
+}
+#CTF{
+  font-family: fantasy;
   color: #B413EC;
+  font-size: 3rem;
 }
+.listedItems{
+  margin-left: 10px;
+}
+.listedItems h3{
+  color: #cd6af0;
+  font-family: cursive;
+  font-weight: bolder;
+}
+
 .profileBtn{
   margin-left: 15px;
 }
 
-#homeSearch{
-  max-width: 30rem;
-  margin-left: auto;
-  margin-right: auto;
+.homeSearch{
+justify-content: center;
+
 }
 .gameCardWish{
   color:white;
@@ -215,6 +226,39 @@ padding: 20px;
   width: 100%;
   height: 100%;
 }
+.miniMarketOffer{
+  width: 25rem;
+  background-color: #4f2b5e;
+  margin-left: 20px;
+  margin-top: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.miniMarketOfferImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16rem;
+}
+.miniMarketOfferImg img{
+  max-width: 100%;
+  height: 100%;
+}
+.miniMarketOffer p{
+ text-align: center;
+}
+.carouselCard{
+  font-size: 1.5rem;
+  cursor: pointer;
+  height: 450px;
+}
+.carouselCard img {
+  height: 420px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* styling makes button look like a link */
 .detailsBtn{
@@ -371,7 +415,8 @@ font-size: 4rem;
 .sliderContainer{
   text-align: center;
   background-color: #CD6AF0;
-  width: 20rem;
+  width: 25rem;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
 }
