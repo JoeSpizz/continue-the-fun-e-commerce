@@ -64,15 +64,15 @@ let carousel = market.sort(() => .5 - Math.random()).slice(0,5)
       </div>
       <div className='listedItems'>
         <h3> For Sale:</h3>
-        <Grid>
+        <Grid stackable doubling columns={4}>
           {
-        sale.map(game=><MiniMarketCard {...game} key={game.id} />)
+        sale.map(game=><Grid.Column><MiniMarketCard {...game} key={game.id} /></Grid.Column>)
         }
          </Grid>
          
           <h3> Free (shipping required  ):</h3>
-          <Grid>
-          {offer.map(game=><MiniMarketCardOffer {...game} key={game.id}/>)}
+          <Grid columns={3} doubling stackable>
+          {offer.map(game=><Grid.Column><MiniMarketCardOffer {...game} key={game.id}/></Grid.Column>)}
           </Grid>
           </div>
           </div>

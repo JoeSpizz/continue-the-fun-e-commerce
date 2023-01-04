@@ -6,9 +6,6 @@ import Login from './Login';
 
 function UserProfile({user, login}) {
   const navigate = useNavigate()
-  const [editName, setEditName]= useState(false)
-  const [editAddress, setEditAddress]= useState(false)
-  const [editEmail, setEditEmail]= useState(false)
   const [profile, setProfile]= useState({
     username : user.username,
     street : user.address,
@@ -23,15 +20,6 @@ function UserProfile({user, login}) {
   })
   }, [user])
 
-const editNameStatus=()=>{
-  setEditName(!editName)
-}
-const editAddressStatus=()=>{
-  setEditAddress(!editAddress)
-}
-const editEmailStatus=()=>{
-  setEditEmail(!editEmail)
-}
 const updateProfile = (e)=>{
   setProfile({
     ...profile,
@@ -53,9 +41,6 @@ const submitUpdate =()=>{
     }
     else(swal("error"))
   })
-  setEditAddress(false)
-  setEditEmail(false)
-  setEditName(false)
 }
 const deleteProfile = ()=>{
   swal({
@@ -87,20 +72,37 @@ const deleteProfile = ()=>{
 if (!user || Object.keys(user).length===0) return <Login login={login}/>
   return (
     <div id="profile">
+            <img src="https://res.cloudinary.com/doqo7su1s/image/upload/v1672766746/CTF_Logo_Light_otpioj.png" alt="Continue the Fun!"/>
+
       <h1>{profile.username}'s Profile</h1>
-      <div id="FormContainer">
-        {editName ? <Form className='profileSection'><Form.Group>
+      <h3> Check out your <a href="/wishlist">Wishlist</a>, or <a href="/gamecenter">list a game</a> to help Continue the Fun</h3>
+      <div className='profileGrid'>
+      <div id="formC3R1">
+        <Form inverted ><Form.Group>
           <Form.Field control={Input} type="text" name="username" value={profile.username} onChange={updateProfile}/> 
-          <button className='profileBtn' onClick={submitUpdate}>Update</button></Form.Group> </Form> 
-          :<p className='profileSection'>Username: {profile.username} 
-          <button color='violet' className='profileBtn' onClick={editNameStatus}>Edit</button></p>}
+          </Form.Group> </Form> 
+          </div>
 
-        {editAddress ?<Form><Form.Group><Form.Field control={Input} type="text" name="address" value={profile.street} onChange={updateProfile}/><Form.Field control={Input} type="number" placeholder="zipcode" name="zipcode" value={profile.zipcode} onChange={updateProfile}/> <button onClick={submitUpdate}>Update</button></Form.Group> </Form> :<p>Address: {profile.street}, {profile.zipcode} <button  className='profileBtn' color='violet' onClick={editAddressStatus}>Edit</button></p> }
-
-        { editEmail?<Form><Form.Group><Form.Field control={Input} type="email" name="email" value={profile.email} onChange={updateProfile}/> <button className='profileBtn' onClick={submitUpdate}>Update</button></Form.Group> </Form>:<p>Email: {profile.email} <button className='profileBtn' color='violet' onClick={editEmailStatus}>Edit</button></p>}
+          <div id="formC3R2">
+        <Form><Form.Group><Form.Field control={Input} type="text" name="address" value={profile.street} onChange={updateProfile}/><Form.Field control={Input} type="number" placeholder="zipcode" name="zipcode" value={profile.zipcode} onChange={updateProfile}/> </Form.Group> </Form>
         </div>
+        <div id="formC3R3">
+        <Form><Form.Group><Form.Field control={Input} type="email" name="email" value={profile.email} onChange={updateProfile}/> </Form.Group> </Form>
+  </div>
+  
+          <div id="labelC2R1">
+          <h3>Username</h3>
+          </div>
+          <div id="labelC2R2">
+          <h3>Street Address and Zip Code</h3>
+          </div>
+          <div id="labelC2R3">
+          <h3>E-mail</h3>
+        </div>
+        </div>
+        <button id="saveProfile" onClick={submitUpdate}>Save Profile</button>
         <button className='detailsBtn' id="deleteProfile" onClick={deleteProfile}> Delete Profile</button>
-     
+
       </div>
   )
 }
