@@ -6,7 +6,7 @@ import swal from 'sweetalert'
 function PotentialListing() {
     const[game, setGame]=useState({})
     const[listing, setListing] =useState({})
-    const[select, setSelect]=useState("")
+    const[select, setSelect]=useState("Decent")
     const navigate = useNavigate()
     let route = window.location.pathname
    const isItOffer = route.charAt(1)
@@ -56,7 +56,7 @@ function PotentialListing() {
             navigate('/gamecenter')
         }
         else{
-            r.json().then(data=>swal(data))
+            r.json().then(data=>alert(data.errors))
         }
     })
     }

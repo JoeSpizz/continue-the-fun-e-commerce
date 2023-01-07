@@ -46,7 +46,7 @@ function handleNewUserInput (e){
         [e.target.name] : value
     })
 }
-console.log(newUser)
+
 // sends request to Rails for User Creation. Logs in User.
 function createUser(e){
     e.preventDefault()
@@ -64,7 +64,7 @@ function createUser(e){
                 setCreate(!create)
                 }
                 else{
-                    r.json().then(data=>swal(data.errors))
+                    r.json().then(data=>alert(data.errors))
                 }
         })
     }
