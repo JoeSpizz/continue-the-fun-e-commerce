@@ -15,7 +15,6 @@ const[listing, setListing]=useState({
 })
 const[select, setSelect]=useState(game.condition)
 const editGame = ()=>{
-    console.log(listing)
     fetch(`/marketplace_items/${game.id}`, {
         method: "PATCH",
         headers: {

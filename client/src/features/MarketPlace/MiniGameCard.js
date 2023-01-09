@@ -34,8 +34,8 @@ function MiniGameCard(game) {
           navigate(`/offer/${data.id}`)
         })
         }
-          else{
-            swal("something went wrong")}
+          else{r.json().then(data=>
+            alert(data.errors))}
           })
     ]
   return (

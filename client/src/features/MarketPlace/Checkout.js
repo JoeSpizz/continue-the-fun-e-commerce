@@ -37,7 +37,6 @@ const handleChange = (e)=>{
 }
 const createNewAddress = ()=>{
     setEdit(!edit)
-    console.log(address)
 }
 const editBilling = ()=>{
     setBilling(!billing)
@@ -62,7 +61,7 @@ const placeOrder = ()=>{
             navigate('/')
         }
         else{
-            r.json().then(data=>console.log(data))
+            r.json().then(data=>alert(data.errors))
         }
     })
     // navigate('/')

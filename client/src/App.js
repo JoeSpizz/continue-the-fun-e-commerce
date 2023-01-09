@@ -41,7 +41,6 @@ function App() {
           setUserData(data)
           setUser(data.username)})}})
   }, [])
-// console.log(userData)
 
   useEffect(()=>{
     dispatch(fetchCart())

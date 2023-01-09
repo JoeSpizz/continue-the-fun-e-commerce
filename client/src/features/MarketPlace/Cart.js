@@ -19,7 +19,7 @@ const dispatch = useDispatch()
   const checkout = ()=>{
     navigate('/checkout')
   }
-  console.log(user)
+
  
   if (!user || Object.keys(user).length===0) return <Login login={login}/>
   return (

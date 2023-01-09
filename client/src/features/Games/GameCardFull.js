@@ -11,11 +11,9 @@ function GameCardFull() {
     const [exist, setExist] = useState([])
     useEffect(()=>{
         let route = window.location.pathname
-        console.log(route)
         fetch(`${route}`)
         .then(r=>r.json())
         .then(data=>{
-            console.log(data)
             setGame(data)
         })
     },[])
@@ -52,8 +50,6 @@ function GameCardFull() {
         .then(setExist([]))
         
     }
-
-    console.log(exist)
   return (
     <div >
         <h1 className="gameName" >{game.name}</h1>
