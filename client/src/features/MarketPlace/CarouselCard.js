@@ -17,8 +17,8 @@ function CarouselCard(game) {
         ? 
         <div >
             <img className='hoveredImg' src={game.boardgame.image_url} alt="game"/>
-            <h3 className='hoveredText'> {game.price ? <p> {game.user.username} is selling this game for ${game.price}</p> : <p>{game.user.username} is Offering this game for Free!</p>}
-        The game is in {game.condition} condition. {game.condition_detail}</h3>
+            <p className='hoveredText'> {game.price ? <p> {game.user.username} is selling this game for ${game.price}</p> : <p>{game.user.username} is Offering this game for Free!</p>}
+        The game is in {game.condition} condition {game.condition_detail}</p>
             </div>
         : 
         <div className='carouselImg'>

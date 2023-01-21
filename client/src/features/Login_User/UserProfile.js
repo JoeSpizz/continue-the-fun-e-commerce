@@ -27,7 +27,6 @@ const updateProfile = (e)=>{
   })
 }
 const submitUpdate =()=>{
- 
   fetch(`/users/${user.id}`,{
     method: "PATCH",
     headers:{
@@ -45,7 +44,7 @@ const submitUpdate =()=>{
 const deleteProfile = ()=>{
   swal({
       title: "Delete Profile",
-      text: "Deleting a profile is permanent and will immediately remove any listings you've put up on the marketplace. This CANNOT be undone.",
+      text: "Deleting a profile is PERMANENT and will immediately remove any listings you've put up on the marketplace. This CANNOT be undone.",
       icon: "warning",
       buttons:["Cancel", "Delete Forever"]
     })

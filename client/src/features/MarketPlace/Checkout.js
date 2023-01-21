@@ -64,7 +64,6 @@ const placeOrder = ()=>{
             r.json().then(data=>alert(data.errors))
         }
     })
-    // navigate('/')
 }
 
   return (
