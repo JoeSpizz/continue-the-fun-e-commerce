@@ -9,6 +9,7 @@ class User < ApplicationRecord
     validates :username, uniqueness: true
     validates :password, presence: true, on: :create
      validates :email, presence: true, email: true
+     validates :email, uniqueness: true
     validates :zipcode, presence: true
     validates :zipcode, numericality: { only_integer: true }, length: {is: 5} 
  
