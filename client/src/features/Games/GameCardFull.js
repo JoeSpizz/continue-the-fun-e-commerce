@@ -1,54 +1,53 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
-import ShowMoreText from "react-show-more-text";
-import { Button, Icon } from 'semantic-ui-react';
-import swal from 'sweetalert';
-
-
-function GameCardFull() {
-    const [game, setGame] = useState({})
-    const wishlist = useSelector(state=>(state.wishlist.entities))
-    const [exist, setExist] = useState([])
-    useEffect(()=>{
-        let route = window.location.pathname
-        fetch(`${route}`)
-        .then(r=>r.json())
-        .then(data=>{
-            setGame(data)
-        })
-    },[])
-
-    useEffect(()=>{
-        let test = wishlist.filter(item=> item.name === game.name)
-        setExist(test)
-    }, [wishlist, game.name])
-
-    function wishAddFromFull(){
-        fetch('/wishlists', {
-            method: "POST",
-            headers: {
-                "Content-type": "Application/json"
-            },
-            body: JSON.stringify(game)
-        })
-        .then(r=> {if(r.ok){
-            r.json()
-            .then(setExist([game]))}
-            else{
-                r.json().then(data=>{
-                    let error = data.errors[0]
-                    swal(error)})
-            }
-            })
-    
+ 
+ import React, { useEffect, useState } from 'react'
+ import { useSelector } from 'react-redux';
+ import ShowMoreText from "react-show-more-text";
+ import { Button, Icon } from 'semantic-ui-react';
+ import swal from 'sweetalert';
+ 
+ 
+ function GameCardFull() {
+     const [game, setGame] = useState({})
+     const wishlist = useSelector(state=>(state.wishlist.entities))
+     const [exist, setExist] = useState([])
+     useEffect(()=>{
+         let route = window.location.pathname
+         fetch(`${route}`)
+         .then(r=>r.json())
+         .then(data=>{
+             setGame(data)
+         })
+     },[])
+ 
+     useEffect(()=>{
+         let test = wishlist.filter(item=> item.name === game.name)
+         setExist(test)
+     }, [wishlist, game.name])
+ 
+     function wishAddFromFull(){
+         fetch('/wishlists', {
+             method: "POST",
+             headers: {
+                 "Content-type": "Application/json"
+             },
+             body: JSON.stringify(game)
+         })
+         .then(r=> {if(r.ok){
+             r.json()
+             .then(setExist([game]))}
+             else{
+                 r.json().then(data=>{
+                     let error = data.errors[0]
+                     swal(error)})
+             }
+             })
+     
     }
     function wishRemoveFromFull(){
-       
         fetch(`/wishlists/${game.id}`, {
             method: "DELETE"
         })
         .then(setExist([]))
-        
     }
   return (
     <div >
