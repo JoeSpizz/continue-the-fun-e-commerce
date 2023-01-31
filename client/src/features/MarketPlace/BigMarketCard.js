@@ -52,12 +52,12 @@ function BigMarketCard({user, login}) {
     { detail ? 
         <ul className='listingDetails'>
             <li>Players: {game.boardgame.min_players}-{game.boardgame.max_players}</li>
-        <li>Typical minimum game length: {game.boardgame.min_playtime} minutes</li>
+        <li>Average minimum game length: {game.boardgame.min_playtime} minutes</li>
         <li > Description:
              <ReactShowMoreText 
                  lines={5}
-                 more="Show more"
-                 less="Show less"
+                 more="More"
+                 less="Less"
                  className="content-css"
                  expanded={false}
                  width={500}

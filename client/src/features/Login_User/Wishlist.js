@@ -70,7 +70,7 @@ function cardClick(game){
 })
 }
   else{
-    swal("something went wrong")}
+    r.json().then(data=> alert(data.errors))}
   })
 }
 

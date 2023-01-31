@@ -9,11 +9,6 @@ export const fetchWishlist = createAsyncThunk("wishlist/fetchwishlist", () => {
     .then((response) => response.json())
     .then((data) => data);
 });
-
-
-// sync actions added for demo purposes
-
-
 // Reducer
 const initialState = {
   entities: [], // array of wishlisted games
